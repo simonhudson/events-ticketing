@@ -1,12 +1,15 @@
+import { Request } from 'express';
+
 type HandleErrorParams = {
-	endpoint: string;
+	req: Request;
 	err: any;
 };
 
-export const handleError = ({ endpoint, err }: HandleErrorParams) => {
+export const handleError = ({ req, err }: HandleErrorParams) => {
 	return {
 		error: true,
-		endpoint,
+		endpoint: req.originalUrl,
+		method: req.method,
 		err,
 	};
 };
