@@ -12,5 +12,6 @@ export const handleResponse = ({ res, data }: HandleResponseParams) => {
 		},
 		data: data,
 	};
+	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.json(returnObj);
 };

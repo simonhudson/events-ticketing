@@ -4,8 +4,8 @@ import { post } from '../helpers/post';
 import { handleResponse } from '../helpers/handleResponse';
 import { handleError } from '../helpers/handleError';
 const router = express.Router();
-import type { Event } from '../types/event';
-import type { Ticket, TicketCategory } from '../types/ticket';
+import type { Event } from '../../types/event';
+import type { Ticket, TicketCategory } from '../../types/ticket';
 import { randomUUID } from 'crypto';
 
 export const getEvents = async ({ req }: { req: Request }) => {

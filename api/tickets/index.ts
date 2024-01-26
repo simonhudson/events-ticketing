@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import { get } from '../helpers/get';
 import { handleResponse } from '../helpers/handleResponse';
 const router = express.Router();
-import type { Ticket } from '../types/ticket';
+import type { Ticket } from '../../types/ticket';
 
 router.get('/', async (_req: Request, res: Response) => {
 	const tickets: Ticket[] = await get({ req, endpoint: 'tickets' });
