@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "name": "Test Event 1",
+        "description": "This is a test event",
+        "date": "2024-04-30"
+    },
+    {
+        "id": 2,
+        "name": "Test Event 2",
+        "description": "This is another test event",
+        "date": "2024-06-01"
+    }
+]

@@ -1,0 +1,55 @@
+[
+    {
+        "id": 1,
+        "event_id": 1,
+        "categories": [
+            {
+                "category_id": 1,
+                "name": "Adult",
+                "description": null,
+                "price": 10.00,
+                "booking_fee": 1.00,
+                "isAvailable": true
+            },
+            {
+                "category_id": 2,
+                "name": "Child",
+                "description": "under 16 years",
+                "price": 5.00,
+                "booking_fee": 1.00,
+                "isAvailable": true
+            },
+            {
+                "category_id": 3,
+                "name": "Under 5",
+                "description": null,
+                "price": 0,
+                "booking_fee": 0,
+                "isAvailable": true
+            },
+            {
+                "category_id": 4,
+                "name": "Family",
+                "description": "2 adults and 2 children",
+                "price": 25.00,
+                "booking_fee": 1.00,
+                "isAvailable": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "event_id": 2,
+        "categories": [
+            {
+                "category_id": 1,
+                "name": "Adult",
+                "description": null,
+                "price": 10.00,
+                "booking_fee": 1.00,
+                "isAvailable": true
+            }
+        ]
+    }
+
+]
