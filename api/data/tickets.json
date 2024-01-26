@@ -34,5 +34,35 @@
                 "is_available": true
             }
         ]
+    },
+    {
+        "id": "78679bd9-5991-4718-820f-10e078ac8029",
+        "event_id": "4846eb29-d96f-408c-acf3-928e8c1144dd",
+        "categories": []
+    },
+    {
+        "id": "39363093-2a55-4bc7-a04f-77a35dbe297f",
+        "event_id": "877906e2-e1da-429a-bdb4-47605faad1fa",
+        "categories": []
+    },
+    {
+        "id": "9209badd-8f37-4a0c-96b9-4abb92d33bda",
+        "event_id": "9008c3b1-efe8-4695-918e-0487e3d24bc4",
+        "categories": []
+    },
+    {
+        "id": "fccfcd0d-f8ae-425d-a11a-27847b2ca472",
+        "event_id": "c5b0b42d-36f9-41ec-ae34-7cf966fa1f2c",
+        "categories": []
+    },
+    {
+        "id": "74598d7e-a0a9-4bc6-a9ed-9cbca1bdfb12",
+        "event_id": "c657b7fe-7a49-46e2-8cca-b49150625d65",
+        "categories": []
+    },
+    {
+        "id": "bf19e867-5ff6-4304-bf0d-3d4e660298d4",
+        "event_id": "e834fa3b-9913-4d01-a479-4a37431c44d1",
+        "categories": []
     }
 ]

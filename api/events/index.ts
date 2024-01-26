@@ -35,6 +35,10 @@ router.get('/', async (req: Request, res: Response) => {
 });
 
 router.post('/', async (req: Request, res: Response) => {
+	console.log('----------------');
+	console.log(req.body);
+	console.log('----------------');
+
 	const requestBody = req.body;
 	if (!Object.keys(requestBody).length) res.send(handleError({ req, err: 'No request body found' }));
 
@@ -52,15 +56,17 @@ router.post('/', async (req: Request, res: Response) => {
 
 	const createNewEventTicketInfo = () => {
 		const returnData: TicketCategory[] = [];
-		requestBody.tickets.forEach((ticket: any, index: number) => {
-			const newTicket: TicketCategory = {
-				category_id: ticket.category_id,
-				price: ticket.price || 0,
-				booking_fee: ticket.booking_fee || 0,
-				is_available: ticket.is_available || true,
-			};
-			returnData.push(newTicket);
-		});
+		if (requestBody?.tickets?.length) {
+			requestBody.tickets.forEach((ticket: any, index: number) => {
+				const newTicket: TicketCategory = {
+					category_id: ticket.category_id,
+					price: ticket.price || 0,
+					booking_fee: ticket.booking_fee || 0,
+					is_available: ticket.is_available || true,
+				};
+				returnData.push(newTicket);
+			});
+		}
 		return returnData;
 	};
 
