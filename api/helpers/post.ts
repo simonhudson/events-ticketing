@@ -1,6 +1,7 @@
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import { handleError } from '../helpers/handleError';
 import { writeFileSync } from 'fs';
+import xss from 'xss';
 
 interface PostParams {
 	req: Request;
@@ -10,7 +11,7 @@ interface PostParams {
 
 export const post = async ({ req, endpoint, data }: PostParams) => {
 	try {
-		writeFileSync(`../api/data/${endpoint}.json`, JSON.stringify(data, null, 4));
+		writeFileSync(`../api/data/${endpoint}.json`, xss(JSON.stringify(data, null, 4)));
 		return;
 	} catch (err: any) {
 		handleError({ req, err });

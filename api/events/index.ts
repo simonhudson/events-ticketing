@@ -14,7 +14,7 @@ export const getEvents = async ({ req }: { req: Request }) => {
 	const ticketCategories = await get({ req, endpoint: `ticketCategories` });
 
 	eventsData.forEach((event: Event, index: number) => {
-		// A lot of this logic to get data from different sources would be done using a join/aggregate in a database
+		// A lot of this logic to combine data from different sources would be done using a join/aggregate in a database
 		const filteredTickets = tickets.filter((ticket: any) => ticket.event_id == event.id);
 		filteredTickets[0].categories.forEach((category: any) => {
 			category.name = ticketCategories.filter(

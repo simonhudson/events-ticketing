@@ -22,5 +22,17 @@
                 "is_available": true
             }
         ]
+    },
+    {
+        "id": "5ee83ff7-2214-4993-8dfe-b08f59748928",
+        "event_id": "73ca3a93-a6c4-4401-ad3c-cbf8980b7b73",
+        "categories": [
+            {
+                "category_id": "b5c41ed3-1186-4d91-a00c-6505b7753a8c",
+                "price": 12.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            }
+        ]
     }
 ]

@@ -4,5 +4,11 @@
         "name": "Family Fun!",
         "description": "A fun day out for all the family",
         "date": "2024-08-23"
+    },
+    {
+        "id": "73ca3a93-a6c4-4401-ad3c-cbf8980b7b73",
+        "name": "Comedy Night",
+        "description": "Adults only! Strictly 18+",
+        "date": "2024-06-19"
     }
 ]
