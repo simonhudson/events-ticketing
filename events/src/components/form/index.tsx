@@ -50,23 +50,24 @@ export const AddEvent = () => {
 		const categoryValue = ticketCategoryFieldRef?.current?.value;
 		const typeValue = ticketTypeFieldRef?.current?.value;
 		const descriptionValue = ticketDescriptionFieldRef?.current?.value;
-		const priceValue = parseFloat(ticketPriceFieldRef?.current?.value, 10).toFixed(2);
-		const bookingFeeValue = parseFloat(ticketBookingFeeFieldRef?.current?.value).toFixed(2);
+		const priceValue = ticketPriceFieldRef?.current?.value;
+		const bookingFeeValue = ticketBookingFeeFieldRef?.current?.value;
 
-		const isValid = !!categoryValue?.length && !!typeValue?.length && !isNaN(priceValue) && !isNaN(bookingFeeValue);
+		const isValid =
+			!!categoryValue?.length &&
+			!!typeValue?.length &&
+			!isNaN(Number(priceValue)) &&
+			!isNaN(Number(bookingFeeValue));
 		if (isValid) {
-			const newTickets = [
-				...tickets,
-				{
-					category: categoryValue,
-					type: typeValue,
-					description: descriptionValue,
-					price: priceValue,
-					booking_fee: bookingFeeValue,
-					is_available: true,
-				},
-			];
-			setTickets(newTickets);
+			const newTicket: Ticket = {
+				category: categoryValue,
+				type: typeValue,
+				description: descriptionValue,
+				price: parseFloat(Number(priceValue).toFixed(2)),
+				booking_fee: parseFloat(Number(bookingFeeValue).toFixed(2)),
+				is_available: true,
+			};
+			setTickets([...tickets, newTicket]);
 		}
 	};
 

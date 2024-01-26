@@ -28,6 +28,30 @@
                 "price": "0.00",
                 "booking_fee": "0.00",
                 "is_available": true
+            },
+            {
+                "category": "General Admission",
+                "type": "Family",
+                "description": "2 adults and 2 children under 16",
+                "price": "40.00",
+                "booking_fee": "1.99",
+                "is_available": true
+            }
+        ]
+    },
+    {
+        "id": "d68f253b-c66b-4470-85f8-197ba929b78a",
+        "name": "Adult Comedy Night",
+        "description": "Strictly Over 18s!",
+        "date": "2024-02-10",
+        "tickets": [
+            {
+                "category": "General Admission",
+                "type": "Adult",
+                "description": "Strictly Over 18",
+                "price": 10,
+                "booking_fee": 1.99,
+                "is_available": true
             }
         ]
     }

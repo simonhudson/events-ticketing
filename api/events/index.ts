@@ -5,11 +5,18 @@ import { handleResponse } from '../helpers/handleResponse';
 import { handleError } from '../helpers/handleError';
 const router = express.Router();
 import type { Event } from '../../types/event';
-import type { Ticket } from '../../types/ticket';
 import { randomUUID } from 'crypto';
 
 export const getEvents = async ({ req }: { req: Request }) => {
 	const events: Event[] = await get({ req, endpoint: 'events' });
+	events.forEach((event) => {
+		event.dateFormatted = new Date(event.date).toLocaleDateString('en-GB', {
+			weekday: 'short',
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+		});
+	});
 	return events;
 };
 
@@ -24,8 +31,6 @@ router.post('/', async (req: Request, res: Response) => {
 	if (!Object.keys(requestBody).length) return res.send(handleError({ req, err: 'No request body found' }));
 
 	const existingEvents: Event[] = await get({ req, endpoint: 'events' });
-	// const existingTickets: Ticket[] = await get({ req, endpoint: 'tickets' });
-
 	const newEventId = randomUUID();
 
 	const newEvent: Event = {
@@ -36,34 +41,8 @@ router.post('/', async (req: Request, res: Response) => {
 		tickets: requestBody.tickets,
 	};
 
-	// const createNewEventTicketInfo = () => {
-	// 	const returnData: TicketCategory[] = [];
-	// 	if (requestBody?.tickets?.length) {
-	// 		requestBody.tickets.forEach((ticket: any, index: number) => {
-	// 			const newTicket: TicketCategory = {
-	// 				category_id: ticket.category_id,
-	// 				price: ticket.price || 0,
-	// 				booking_fee: ticket.booking_fee || 0,
-	// 				is_available: ticket.is_available || true,
-	// 			};
-	// 			returnData.push(newTicket);
-	// 		});
-	// 	}
-	// 	return returnData;
-	// };
-
-	// const newTicket: Ticket = {
-	// 	id: randomUUID(),
-	// 	event_id: newEvent.id,
-	// 	categories: createNewEventTicketInfo(),
-	// };
-
-	const eventDataToInsert = [...existingEvents, newEvent];
-	// const ticketDataToInsert = [...existingTickets, newTicket];
-
 	try {
-		await post({ req, endpoint: 'events', data: eventDataToInsert });
-		// await post({ req, endpoint: 'tickets', data: ticketDataToInsert });
+		await post({ req, endpoint: 'events', data: [...existingEvents, newEvent] });
 		handleResponse({ res, data: { message: 'Event created successfully' } });
 	} catch (err: any) {
 		handleError({ req, err });
