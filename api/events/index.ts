@@ -6,6 +6,7 @@ import { handleError } from '../helpers/handleError';
 const router = express.Router();
 import type { Event } from '../../types/event';
 import { randomUUID } from 'crypto';
+import { slugify } from '../helpers/slugify';
 
 export const getEvents = async ({ req }: { req: Request }) => {
 	const events: Event[] = await get({ req, endpoint: 'events' });
@@ -34,11 +35,16 @@ router.post('/', async (req: Request, res: Response) => {
 	const newEventId = randomUUID();
 
 	const newEvent: Event = {
+		date: requestBody.date,
+		description: requestBody.description,
 		id: newEventId,
 		name: requestBody.name,
-		description: requestBody.description,
-		date: requestBody.date,
+		slug: `${slugify(requestBody.name)}-${requestBody.date}`,
 		tickets: requestBody.tickets,
+		time: {
+			start: requestBody.time.start,
+			end: requestBody.time.end,
+		},
 	};
 
 	try {
@@ -49,9 +55,9 @@ router.post('/', async (req: Request, res: Response) => {
 	}
 });
 
-router.get('/:event_id', async (req: Request, res: Response) => {
+router.get('/:slug', async (req: Request, res: Response) => {
 	const events = await getEvents({ req });
-	const event = events.filter((event: any) => event.id === req.params.event_id);
+	const event = events.filter((event: any) => event.slug === req.params.slug);
 	handleResponse({ res, data: event });
 });
 

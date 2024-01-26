@@ -11,10 +11,6 @@ export const Event = () => {
 		(async () => {
 			const response = await fetch(`http://localhost:3000/api/events/${params.id}`);
 			const data = await response.json();
-			console.log('----------------');
-			console.log(data.data[0]);
-			console.log('----------------');
-
 			if (data?.data?.length) setEvent(data.data[0]);
 		})();
 	}, [params.id]);
@@ -29,6 +25,10 @@ export const Event = () => {
 						<>
 							<h2>When</h2>
 							<p>{event.dateFormatted}</p>
+							<p>
+								{event.time?.start && event.time.start}
+								{event.time?.end && ` - ` + event.time.end}
+							</p>
 						</>
 					)}
 					{event.tickets?.length && (

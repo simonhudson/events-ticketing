@@ -1,58 +1,39 @@
 [
     {
-        "id": "60c640b9-7330-4059-8757-d48c9c535e06",
-        "name": "Family fun day",
+        "date": "2024-05-11",
         "description": "A day of fun",
-        "date": "2024-03-30",
+        "id": "e87084fd-62ae-4ce9-b8c9-ec0c2994dc42",
+        "name": "Family fun day",
+        "slug": "family-fun-day-2024-05-11",
         "tickets": [
             {
                 "category": "General Admission",
                 "type": "Adult",
                 "description": "",
-                "price": "10.99",
-                "booking_fee": "1.99",
+                "price": 10,
+                "booking_fee": 1.99,
                 "is_available": true
             },
             {
                 "category": "General Admission",
                 "type": "Child",
                 "description": "Under 16",
-                "price": "7.99",
-                "booking_fee": "1.99",
-                "is_available": true
-            },
-            {
-                "category": "General Admission",
-                "type": "Child",
-                "description": "Under 5",
-                "price": "0.00",
-                "booking_fee": "0.00",
+                "price": 7,
+                "booking_fee": 1.99,
                 "is_available": true
             },
             {
                 "category": "General Admission",
                 "type": "Family",
                 "description": "2 adults and 2 children under 16",
-                "price": "40.00",
-                "booking_fee": "1.99",
-                "is_available": true
-            }
-        ]
-    },
-    {
-        "id": "d68f253b-c66b-4470-85f8-197ba929b78a",
-        "name": "Adult Comedy Night",
-        "description": "Strictly Over 18s!",
-        "date": "2024-02-10",
-        "tickets": [
-            {
-                "category": "General Admission",
-                "type": "Adult",
-                "description": "Strictly Over 18",
-                "price": 10,
+                "price": 40,
                 "booking_fee": 1.99,
                 "is_available": true
             }
-        ]
+        ],
+        "time": {
+            "start": "12:00",
+            "end": "19:30"
+        }
     }
 ]

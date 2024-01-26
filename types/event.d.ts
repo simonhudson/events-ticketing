@@ -1,10 +1,15 @@
 import type { Ticket } from './ticket';
 
 export type Event = {
-	id: string;
-	name: string;
-	description?: string;
 	date: string;
 	dateFormatted?: string;
+	description?: string;
+	id: string;
+	name: string;
+	slug: string;
 	tickets?: Ticket[];
+	time?: {
+		start?: string;
+		end?: string;
+	};
 };

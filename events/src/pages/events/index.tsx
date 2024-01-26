@@ -20,7 +20,7 @@ export const Events = () => {
 					{events.map((event, index: number) => {
 						return (
 							<li key={index}>
-								<Link to={`/events/${event.id}`}>{event.name}</Link>
+								<Link to={`/events/${event.slug}`}>{event.name}</Link>
 							</li>
 						);
 					})}

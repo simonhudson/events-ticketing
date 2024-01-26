@@ -14,6 +14,8 @@ export const AddEvent = () => {
 	const nameFieldRef = useRef<HTMLInputElement>(null);
 	const descriptionFieldRef = useRef<HTMLInputElement>(null);
 	const dateFieldRef = useRef<HTMLInputElement>(null);
+	const timeStartFieldRef = useRef<HTMLInputElement>(null);
+	const timeEndFieldRef = useRef<HTMLInputElement>(null);
 
 	const ticketCategoryFieldRef = useRef<HTMLInputElement>(null);
 	const ticketTypeFieldRef = useRef<HTMLInputElement>(null);
@@ -26,6 +28,8 @@ export const AddEvent = () => {
 		const nameValue = nameFieldRef?.current?.value;
 		const descriptionValue = descriptionFieldRef?.current?.value;
 		const dateValue = dateFieldRef?.current?.value;
+		const timeStartValue = timeStartFieldRef?.current?.value;
+		const timeEndValue = timeEndFieldRef?.current?.value;
 
 		const isValid = !!nameValue?.length && !!descriptionValue?.length && !!dateValue?.length && tickets.length;
 		if (isValid) {
@@ -36,6 +40,10 @@ export const AddEvent = () => {
 					description: descriptionValue,
 					date: dateValue,
 					tickets,
+					time: {
+						start: timeStartValue,
+						end: timeEndValue,
+					},
 				}),
 				headers: { 'Content-Type': 'application/json' },
 			});
@@ -87,6 +95,14 @@ export const AddEvent = () => {
 				<div>
 					<label htmlFor="date">Date</label>
 					<input type="date" id="date" name="date" ref={dateFieldRef} />
+				</div>
+				<div>
+					<label htmlFor="timeStart">Start time</label>
+					<input type="time" id="timeStart" name="timeStart" ref={timeStartFieldRef} />
+				</div>
+				<div>
+					<label htmlFor="timeEnd">Finish time</label>
+					<input type="time" id="timeEnd" name="timeEnd" ref={timeEndFieldRef} />
 				</div>
 				<fieldset>
 					<legend>Tickets</legend>
