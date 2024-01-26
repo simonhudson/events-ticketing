@@ -5,14 +5,13 @@ const router = express.Router();
 import type { Ticket } from '../types/ticket';
 
 router.get('/', async (_req: Request, res: Response) => {
-	const tickets: Ticket[] = await get({ endpoint: 'tickets' });
+	const tickets: Ticket[] = await get({ req, endpoint: 'tickets' });
 	handleResponse({ res, data: tickets });
 });
 
 router.get('/:event_id', async (req: Request, res: Response) => {
-	const tickets: Ticket[] = await get({ endpoint: `tickets` });
-	const eventId: number = parseInt(req.params.event_id, 10);
-	const filteredTickets: Ticket[] = tickets.filter((ticket: any) => ticket.event_id == eventId);
+	const tickets: Ticket[] = await get({ req, endpoint: `tickets` });
+	const filteredTickets: Ticket[] = tickets.filter((ticket: any) => ticket.event_id === req.params.event_id);
 	handleResponse({ res, data: filteredTickets });
 });
 

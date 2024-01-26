@@ -11,8 +11,19 @@ import { randomUUID } from 'crypto';
 export const getEvents = async ({ req }: { req: Request }) => {
 	const eventsData: Event[] = await get({ req, endpoint: 'events' });
 	const tickets = await get({ req, endpoint: `tickets` });
+	const ticketCategories = await get({ req, endpoint: `ticketCategories` });
+
 	eventsData.forEach((event: Event, index: number) => {
+		// A lot of this logic to get data from different sources would be done using a join/aggregate in a database
 		const filteredTickets = tickets.filter((ticket: any) => ticket.event_id == event.id);
+		filteredTickets[0].categories.forEach((category: any) => {
+			category.name = ticketCategories.filter(
+				(ticketCategory: any) => ticketCategory.id === category.category_id
+			)[0].value;
+			category.description = ticketCategories.filter(
+				(ticketCategory: any) => ticketCategory.id === category.category_id
+			)[0].description;
+		});
 		eventsData[index].tickets = filteredTickets[0].categories;
 	});
 	return eventsData;
@@ -43,9 +54,7 @@ router.post('/', async (req: Request, res: Response) => {
 		const returnData: TicketCategory[] = [];
 		requestBody.tickets.forEach((ticket: any, index: number) => {
 			const newTicket: TicketCategory = {
-				category_id: randomUUID(),
-				name: ticket.name,
-				description: ticket.description || null,
+				category_id: ticket.category_id,
 				price: ticket.price || 0,
 				booking_fee: ticket.booking_fee || 0,
 				is_available: ticket.is_available || true,
@@ -75,8 +84,7 @@ router.post('/', async (req: Request, res: Response) => {
 
 router.get('/:event_id', async (req: Request, res: Response) => {
 	const events = await getEvents({ req });
-	const eventId: number = parseInt(req.params.event_id, 10);
-	const event = events.filter((event: any) => event.id == eventId);
+	const event = events.filter((event: any) => event.id === req.params.event_id);
 	handleResponse({ res, data: event });
 });
 

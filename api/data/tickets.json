@@ -1,21 +1,23 @@
 [
     {
-        "id": "b7a3ae67-9acf-47fd-bd96-7483f6e931bb",
-        "event_id": "53bb6f49-3778-4501-a171-d97e8d0a2688",
+        "id": "b892f3eb-8e34-4990-a24c-f66add859058",
+        "event_id": "2116d543-b27c-4231-b4d4-654bbd07c2f7",
         "categories": [
             {
                 "category_id": "b5c41ed3-1186-4d91-a00c-6505b7753a8c",
-                "name": "Adult",
-                "description": null,
                 "price": 14.99,
                 "booking_fee": 1.99,
                 "is_available": true
             },
             {
                 "category_id": "ad3a7096-6c43-46b7-9e79-c48ba91f35c0",
-                "name": "Child",
-                "description": null,
                 "price": 7.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            },
+            {
+                "category_id": "c2c22f5e-8085-494f-a8f4-df9a983ce8f6",
+                "price": 34.99,
                 "booking_fee": 1.99,
                 "is_available": true
             }
