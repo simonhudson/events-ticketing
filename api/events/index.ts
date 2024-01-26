@@ -35,9 +35,10 @@ router.get('/', async (req: Request, res: Response) => {
 });
 
 router.post('/', async (req: Request, res: Response) => {
-	console.log('----------------');
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	console.log('req.body----------------');
 	console.log(req.body);
-	console.log('----------------');
+	console.log('/req.body----------------');
 
 	const requestBody = req.body;
 	if (!Object.keys(requestBody).length) res.send(handleError({ req, err: 'No request body found' }));
