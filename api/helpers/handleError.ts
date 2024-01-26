@@ -1,5 +1,3 @@
-import { Response } from 'express';
-
 type HandleErrorParams = {
 	endpoint: string;
 	err: any;

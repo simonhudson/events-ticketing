@@ -4,7 +4,7 @@ import { handleResponse } from '../helpers/handleResponse';
 const router = express.Router();
 import type { Event } from '../types/event';
 
-const getEvents = async () => {
+export const getEvents = async () => {
 	const eventsData: Event[] = await get({ endpoint: 'events' });
 	const tickets = await get({ endpoint: `tickets` });
 	eventsData.forEach((event: Event, index: number) => {
