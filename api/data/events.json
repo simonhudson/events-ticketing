@@ -1,38 +1,56 @@
 [
     {
-        "id": "2116d543-b27c-4231-b4d4-654bbd07c2f7",
-        "name": "Family Fun!",
-        "description": "A fun day out for all the family",
-        "date": "2024-08-23"
+        "id": "a03f89d6-dfe6-49c8-96bf-d0d8fcdf8f07",
+        "name": "Foo",
+        "description": "Bar",
+        "date": "2024-02-02",
+        "tickets": [
+            {
+                "category": "GA",
+                "type": "Adult",
+                "price": 30,
+                "booking_fee": 2,
+                "is_available": true
+            },
+            {
+                "category": "GA",
+                "type": "Child",
+                "price": 20,
+                "booking_fee": 1,
+                "is_available": true
+            }
+        ]
     },
     {
-        "id": "73ca3a93-a6c4-4401-ad3c-cbf8980b7b73",
-        "name": "Comedy Night",
-        "description": "Adults only! Strictly 18+",
-        "date": "2024-06-19"
+        "id": "a973b7a5-38c8-4b59-bc83-eea9227119f0",
+        "name": "Family fun day",
+        "description": "A day of fun",
+        "date": "2024-02-10",
+        "tickets": [
+            {
+                "category": "General Admission",
+                "type": "Family",
+                "price": 40,
+                "booking_fee": 2,
+                "is_available": true,
+                "description": "2 adults and 2 children"
+            }
+        ]
     },
     {
-        "id": "26f09dad-04f2-4329-8f18-b7b95abd35d1"
-    },
-    {
-        "id": "b01b40c7-9e62-40b8-8bf4-b18e1f264839"
-    },
-    {
-        "id": "f9dfae8b-2cf4-4183-8793-dfc666e4992c"
-    },
-    {
-        "id": "748ed4a0-808f-4e29-bc37-c649b6b80b89"
-    },
-    {
-        "id": "b6629c27-41e6-474a-a685-d649a9cca5d6"
-    },
-    {
-        "id": "d2bc67fd-9c9a-4f74-ab37-7d4d2542655e"
-    },
-    {
-        "id": "5c2fb185-3cdb-4c51-8496-b1cbc60ad64f"
-    },
-    {
-        "id": "8e3c1086-134d-4e48-a129-5f45e0baba13"
+        "id": "b4ba529a-acdb-4ec7-a97a-1b5e87732fb4",
+        "name": "qqqq",
+        "description": "www",
+        "date": "2024-02-10",
+        "tickets": [
+            {
+                "category": "ga",
+                "type": "xxxx",
+                "price": 2,
+                "booking_fee": 1,
+                "is_available": true,
+                "description": "s"
+            }
+        ]
     }
 ]

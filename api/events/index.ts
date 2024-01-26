@@ -11,19 +11,9 @@ import { randomUUID } from 'crypto';
 export const getEvents = async ({ req }: { req: Request }) => {
 	const eventsData: Event[] = await get({ req, endpoint: 'events' });
 	const tickets = await get({ req, endpoint: `tickets` });
-	const ticketCategories = await get({ req, endpoint: `ticketCategories` });
 
 	eventsData.forEach((event: Event, index: number) => {
-		// A lot of this logic to combine data from different sources would be done using a join/aggregate in a database
 		const filteredTickets = tickets.filter((ticket: any) => ticket.event_id == event.id);
-		filteredTickets[0].categories.forEach((category: any) => {
-			category.name = ticketCategories.filter(
-				(ticketCategory: any) => ticketCategory.id === category.category_id
-			)[0].value;
-			category.description = ticketCategories.filter(
-				(ticketCategory: any) => ticketCategory.id === category.category_id
-			)[0].description;
-		});
 		eventsData[index].tickets = filteredTickets[0].categories;
 	});
 	return eventsData;
@@ -35,16 +25,12 @@ router.get('/', async (req: Request, res: Response) => {
 });
 
 router.post('/', async (req: Request, res: Response) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	console.log('req.body----------------');
-	console.log(req.body);
-	console.log('/req.body----------------');
-
 	const requestBody = req.body;
-	if (!Object.keys(requestBody).length) res.send(handleError({ req, err: 'No request body found' }));
+
+	if (!Object.keys(requestBody).length) return res.send(handleError({ req, err: 'No request body found' }));
 
 	const existingEvents: Event[] = await get({ req, endpoint: 'events' });
-	const existingTickets: Ticket[] = await get({ req, endpoint: 'tickets' });
+	// const existingTickets: Ticket[] = await get({ req, endpoint: 'tickets' });
 
 	const newEventId = randomUUID();
 
@@ -53,36 +39,37 @@ router.post('/', async (req: Request, res: Response) => {
 		name: requestBody.name,
 		description: requestBody.description,
 		date: requestBody.date,
+		tickets: requestBody.tickets,
 	};
 
-	const createNewEventTicketInfo = () => {
-		const returnData: TicketCategory[] = [];
-		if (requestBody?.tickets?.length) {
-			requestBody.tickets.forEach((ticket: any, index: number) => {
-				const newTicket: TicketCategory = {
-					category_id: ticket.category_id,
-					price: ticket.price || 0,
-					booking_fee: ticket.booking_fee || 0,
-					is_available: ticket.is_available || true,
-				};
-				returnData.push(newTicket);
-			});
-		}
-		return returnData;
-	};
+	// const createNewEventTicketInfo = () => {
+	// 	const returnData: TicketCategory[] = [];
+	// 	if (requestBody?.tickets?.length) {
+	// 		requestBody.tickets.forEach((ticket: any, index: number) => {
+	// 			const newTicket: TicketCategory = {
+	// 				category_id: ticket.category_id,
+	// 				price: ticket.price || 0,
+	// 				booking_fee: ticket.booking_fee || 0,
+	// 				is_available: ticket.is_available || true,
+	// 			};
+	// 			returnData.push(newTicket);
+	// 		});
+	// 	}
+	// 	return returnData;
+	// };
 
-	const newTicket: Ticket = {
-		id: randomUUID(),
-		event_id: newEvent.id,
-		categories: createNewEventTicketInfo(),
-	};
+	// const newTicket: Ticket = {
+	// 	id: randomUUID(),
+	// 	event_id: newEvent.id,
+	// 	categories: createNewEventTicketInfo(),
+	// };
 
 	const eventDataToInsert = [...existingEvents, newEvent];
-	const ticketDataToInsert = [...existingTickets, newTicket];
+	// const ticketDataToInsert = [...existingTickets, newTicket];
 
 	try {
 		await post({ req, endpoint: 'events', data: eventDataToInsert });
-		await post({ req, endpoint: 'tickets', data: ticketDataToInsert });
+		// await post({ req, endpoint: 'tickets', data: ticketDataToInsert });
 		handleResponse({ res, data: { message: 'Event created successfully' } });
 	} catch (err: any) {
 		handleError({ req, err });
