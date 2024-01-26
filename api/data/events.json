@@ -1,55 +1,33 @@
 [
     {
-        "id": "a03f89d6-dfe6-49c8-96bf-d0d8fcdf8f07",
-        "name": "Foo",
-        "description": "Bar",
-        "date": "2024-02-02",
-        "tickets": [
-            {
-                "category": "GA",
-                "type": "Adult",
-                "price": 30,
-                "booking_fee": 2,
-                "is_available": true
-            },
-            {
-                "category": "GA",
-                "type": "Child",
-                "price": 20,
-                "booking_fee": 1,
-                "is_available": true
-            }
-        ]
-    },
-    {
-        "id": "a973b7a5-38c8-4b59-bc83-eea9227119f0",
+        "id": "60c640b9-7330-4059-8757-d48c9c535e06",
         "name": "Family fun day",
         "description": "A day of fun",
-        "date": "2024-02-10",
+        "date": "2024-03-30",
         "tickets": [
             {
                 "category": "General Admission",
-                "type": "Family",
-                "price": 40,
-                "booking_fee": 2,
-                "is_available": true,
-                "description": "2 adults and 2 children"
-            }
-        ]
-    },
-    {
-        "id": "b4ba529a-acdb-4ec7-a97a-1b5e87732fb4",
-        "name": "qqqq",
-        "description": "www",
-        "date": "2024-02-10",
-        "tickets": [
+                "type": "Adult",
+                "description": "",
+                "price": "10.99",
+                "booking_fee": "1.99",
+                "is_available": true
+            },
             {
-                "category": "ga",
-                "type": "xxxx",
-                "price": 2,
-                "booking_fee": 1,
-                "is_available": true,
-                "description": "s"
+                "category": "General Admission",
+                "type": "Child",
+                "description": "Under 16",
+                "price": "7.99",
+                "booking_fee": "1.99",
+                "is_available": true
+            },
+            {
+                "category": "General Admission",
+                "type": "Child",
+                "description": "Under 5",
+                "price": "0.00",
+                "booking_fee": "0.00",
+                "is_available": true
             }
         ]
     }

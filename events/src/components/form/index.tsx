@@ -1,111 +1,91 @@
-import { useState } from 'react';
-import { debounce } from '../../helpers/debounce';
+import { useState, useRef } from 'react';
 import { httpStatusCodes } from '../../constants/httpStatusCodes';
 import type { Ticket } from '../../../../types/ticket';
 
-type FormFieldValues = {
-	name: string;
-	description: string;
-	date: string;
-	tickets: Ticket[];
-};
-
-const defaultFormFieldValues: FormFieldValues = {
-	name: '',
-	description: '',
-	date: '',
-	tickets: [],
-};
-
-const defaultTicketFieldValues: Ticket = {
-	category: '',
-	type: '',
-	price: undefined,
-	booking_fee: undefined,
-	is_available: true,
+type FeedbackMessage = {
+	type: 'error' | 'success';
+	message: string;
 };
 
 export const AddEvent = () => {
-	const [formFieldValues, setFormFieldValues] = useState<FormFieldValues>(defaultFormFieldValues);
-	const [ticketFieldValues, setTicketFieldValues] = useState<Ticket>(defaultTicketFieldValues);
+	const [tickets, setTickets] = useState<Ticket[]>([]);
+	const [feedbackMessage, setFeedbackMessage] = useState<FeedbackMessage | undefined>();
 
-	const [feedbackMessage, setFeedbackMessage] = useState<
-		{ type: 'error' | 'success'; message: string } | undefined
-	>();
+	const nameFieldRef = useRef<HTMLInputElement>(null);
+	const descriptionFieldRef = useRef<HTMLInputElement>(null);
+	const dateFieldRef = useRef<HTMLInputElement>(null);
+
+	const ticketCategoryFieldRef = useRef<HTMLInputElement>(null);
+	const ticketTypeFieldRef = useRef<HTMLInputElement>(null);
+	const ticketDescriptionFieldRef = useRef<HTMLInputElement>(null);
+	const ticketPriceFieldRef = useRef<HTMLInputElement>(null);
+	const ticketBookingFeeFieldRef = useRef<HTMLInputElement>(null);
 
 	const onSubmit = async (event: { preventDefault: () => void }) => {
-		console.log('----------------');
-		console.log(formFieldValues.tickets);
-		console.log('----------------');
-
 		event.preventDefault();
-		const isValid =
-			!!formFieldValues.name.length &&
-			!!formFieldValues.description.length &&
-			!!formFieldValues.date.length &&
-			formFieldValues.tickets.length;
+		const nameValue = nameFieldRef?.current?.value;
+		const descriptionValue = descriptionFieldRef?.current?.value;
+		const dateValue = dateFieldRef?.current?.value;
 
+		const isValid = !!nameValue?.length && !!descriptionValue?.length && !!dateValue?.length && tickets.length;
 		if (isValid) {
 			const postResponse = await fetch('http://localhost:3000/api/events', {
 				method: 'post',
-				body: JSON.stringify(formFieldValues),
+				body: JSON.stringify({
+					name: nameValue,
+					description: descriptionValue,
+					date: dateValue,
+					tickets,
+				}),
 				headers: { 'Content-Type': 'application/json' },
 			});
-			if (postResponse.status === httpStatusCodes.OK) {
+			if (postResponse.status === httpStatusCodes.OK)
 				setFeedbackMessage({ type: 'success', message: 'Event added' });
-			} else {
-				setFeedbackMessage({ type: 'error', message: 'Unable to add event' });
-			}
-			setFormFieldValues(defaultFormFieldValues);
+			else setFeedbackMessage({ type: 'error', message: 'Unable to add event' });
 		}
 	};
 
-	const handleFieldChange = debounce((e: { target: { name: string; value: string } }) => {
-		setFormFieldValues({
-			...formFieldValues,
-			[e.target.name]: e.target.value,
-		});
-	}, 500);
-
-	const handleTicketFieldChange = debounce((e: { target: { name: string; value: string; type: string } }) => {
-		setTicketFieldValues({
-			...ticketFieldValues,
-			[e.target.name]: e.target.type === 'number' ? parseInt(e.target.value, 10) : e.target.value,
-		});
-	}, 500);
-
 	const addTicket = (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		const isValid =
-			!!ticketFieldValues.category.length && !!ticketFieldValues.type.length && !isNaN(ticketFieldValues.price);
+		const categoryValue = ticketCategoryFieldRef?.current?.value;
+		const typeValue = ticketTypeFieldRef?.current?.value;
+		const descriptionValue = ticketDescriptionFieldRef?.current?.value;
+		const priceValue = parseFloat(ticketPriceFieldRef?.current?.value, 10).toFixed(2);
+		const bookingFeeValue = parseFloat(ticketBookingFeeFieldRef?.current?.value).toFixed(2);
+
+		const isValid = !!categoryValue?.length && !!typeValue?.length && !isNaN(priceValue) && !isNaN(bookingFeeValue);
 		if (isValid) {
-			setFormFieldValues({
-				...formFieldValues,
-				tickets: [...formFieldValues.tickets, ticketFieldValues],
-			});
-			setTicketFieldValues(defaultTicketFieldValues);
+			const newTickets = [
+				...tickets,
+				{
+					category: categoryValue,
+					type: typeValue,
+					description: descriptionValue,
+					price: priceValue,
+					booking_fee: bookingFeeValue,
+					is_available: true,
+				},
+			];
+			setTickets(newTickets);
 		}
 	};
 
 	return (
 		<>
-			{formFieldValues.tickets.map((ticket, index) => (
-				<p key={index}>{ticket.name}</p>
-			))}
 			<h1>Add event</h1>
 			{feedbackMessage && <p className={feedbackMessage.type}>{feedbackMessage.message}</p>}
 			<form id="add-event" name="add-event" onSubmit={(e) => onSubmit(e)}>
 				<div>
 					<label htmlFor="name">Name</label>
-					<input type="text" id="name" name="name" onChange={(e) => handleFieldChange(e)} />
+					<input type="text" id="name" name="name" ref={nameFieldRef} />
 				</div>
 				<div>
 					<label htmlFor="description">Description</label>
-					<input type="text" id="description" name="description" onChange={(e) => handleFieldChange(e)} />
+					<input type="text" id="description" name="description" ref={descriptionFieldRef} />
 				</div>
 				<div>
 					<label htmlFor="date">Date</label>
-					<input type="date" id="date" name="date" onChange={(e) => handleFieldChange(e)} />
+					<input type="date" id="date" name="date" ref={dateFieldRef} />
 				</div>
 				<fieldset>
 					<legend>Tickets</legend>
@@ -114,30 +94,25 @@ export const AddEvent = () => {
 							Category
 						</label>
 						<span id="category-hint">(e.g. "General admission")</span>
-						<input type="text" id="category" name="category" onChange={(e) => handleTicketFieldChange(e)} />
+						<input type="text" id="category" name="category" ref={ticketCategoryFieldRef} />
 					</div>
 					<div>
 						<label htmlFor="type" aria-describedby="type-hint">
 							Type
 						</label>
 						<span id="type-hint">(e.g. "Adult", "Family")</span>
-						<input type="text" id="type" name="type" onChange={(e) => handleTicketFieldChange(e)} />
+						<input type="text" id="type" name="type" ref={ticketTypeFieldRef} />
 					</div>
 					<div>
 						<label htmlFor="description" aria-describedby="description-hint">
 							Description
 						</label>
 						<span id="description-hint">(e.g. "Under 16 years", "2 adults and 2 children")</span>
-						<input
-							type="text"
-							id="description"
-							name="description"
-							onChange={(e) => handleTicketFieldChange(e)}
-						/>
+						<input type="text" id="description" name="description" ref={ticketDescriptionFieldRef} />
 					</div>
 					<div>
 						<label htmlFor="price">Price</label>
-						<input type="number" id="price" name="price" onChange={(e) => handleTicketFieldChange(e)} />
+						<input type="number" id="price" name="price" step=".01" ref={ticketPriceFieldRef} />
 					</div>
 					<div>
 						<label htmlFor="booking_fee">Booking fee</label>
@@ -145,20 +120,23 @@ export const AddEvent = () => {
 							type="number"
 							id="booking_fee"
 							name="booking_fee"
-							onChange={(e) => handleTicketFieldChange(e)}
-						/>
-					</div>
-					<div>
-						<label htmlFor="is_available">Is available</label>
-						<input
-							type="checkbox"
-							id="is_available"
-							name="is_available"
-							checked
-							onChange={(e) => handleTicketFieldChange(e)}
+							step=".01"
+							ref={ticketBookingFeeFieldRef}
 						/>
 					</div>
 					<input type="button" value="Add ticket" onClick={addTicket} />
+					{!!tickets.length && (
+						<>
+							<p>Tickets added:</p>
+							<ul>
+								{tickets.map((ticket, index) => (
+									<li key={index}>
+										{ticket.category}, {ticket.type}, {ticket.price}, {ticket.booking_fee}
+									</li>
+								))}
+							</ul>
+						</>
+					)}
 				</fieldset>
 				<input type="submit" value="Add event" />
 			</form>

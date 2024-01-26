@@ -5,18 +5,12 @@ import { handleResponse } from '../helpers/handleResponse';
 import { handleError } from '../helpers/handleError';
 const router = express.Router();
 import type { Event } from '../../types/event';
-import type { Ticket, TicketCategory } from '../../types/ticket';
+import type { Ticket } from '../../types/ticket';
 import { randomUUID } from 'crypto';
 
 export const getEvents = async ({ req }: { req: Request }) => {
-	const eventsData: Event[] = await get({ req, endpoint: 'events' });
-	const tickets = await get({ req, endpoint: `tickets` });
-
-	eventsData.forEach((event: Event, index: number) => {
-		const filteredTickets = tickets.filter((ticket: any) => ticket.event_id == event.id);
-		eventsData[index].tickets = filteredTickets[0].categories;
-	});
-	return eventsData;
+	const events: Event[] = await get({ req, endpoint: 'events' });
+	return events;
 };
 
 router.get('/', async (req: Request, res: Response) => {
