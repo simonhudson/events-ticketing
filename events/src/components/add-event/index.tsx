@@ -17,7 +17,7 @@ export const AddEvent = () => {
 	const [feedbackMessage, setFeedbackMessage] = useState<FeedbackMessage | undefined>();
 
 	const nameFieldRef = useRef<HTMLInputElement>(null);
-	const descriptionFieldRef = useRef<HTMLInputElement>(null);
+	const descriptionFieldRef = useRef<HTMLTextAreaElement>(null);
 	const mapFieldRef = useRef<HTMLInputElement>(null);
 	const dateFieldRef = useRef<HTMLInputElement>(null);
 	const timeStartFieldRef = useRef<HTMLInputElement>(null);
@@ -111,8 +111,6 @@ export const AddEvent = () => {
 							labelText="Description"
 							rows={10}
 							cols={50}
-							required={true}
-							errorText="djhjfhfjh"
 						/>
 					</FieldItem>
 				</FieldRow>
@@ -146,22 +144,22 @@ export const AddEvent = () => {
 					<FieldRow>
 						<FieldItem>
 							<Input
-								description='(e.g. "General admission", "Balcony seating")'
-								fieldRef={ticketCategoryFieldRef}
-								id="category"
-								labelText="Category"
-							/>
-						</FieldItem>
-					</FieldRow>
-					<FieldRow>
-						<FieldItem>
-							<Input
 								errorText="Please enter a type for this ticket"
 								description='(e.g. "Adult", "Family")'
 								fieldRef={ticketTypeFieldRef}
 								id="type"
 								labelText="Type"
 								required={true}
+							/>
+						</FieldItem>
+					</FieldRow>
+					<FieldRow>
+						<FieldItem>
+							<Input
+								description='(e.g. "General admission", "Balcony seating")'
+								fieldRef={ticketCategoryFieldRef}
+								id="category"
+								labelText="Category"
 							/>
 						</FieldItem>
 					</FieldRow>
