@@ -35,5 +35,27 @@
             "start": "12:00",
             "end": "19:30"
         }
+    },
+    {
+        "date": "2024-03-24",
+        "description": "Playing songs",
+        "map_url": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1201.8105908366417!2d-1.1526231428922915!3d52.95523899301559!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4879c18089993b0d%3A0x11309a2e33332de7!2sTheatre%20Royal%20%26%20Royal%20Concert%20Hall!5e0!3m2!1sen!2suk!4v1706472780170!5m2!1sen!2suk",
+        "id": "7171de38-dc61-4d2d-a80d-e206ad9565ce",
+        "name": "Bob Dylan",
+        "slug": "bob-dylan-2024-03-24",
+        "tickets": [
+            {
+                "category": "General admission",
+                "type": "Adult",
+                "description": "",
+                "price": 25,
+                "booking_fee": 1.99,
+                "is_available": true
+            }
+        ],
+        "time": {
+            "start": "19:00",
+            "end": "23:45"
+        }
     }
 ]

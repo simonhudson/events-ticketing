@@ -31,6 +31,18 @@ export const Event = () => {
 							</p>
 						</>
 					)}
+					<h2>Where</h2>
+					{event.map_url && (
+						<iframe
+							aria-label="Map showing the location of the event"
+							src={event.map_url}
+							width="600"
+							height="450"
+							allowFullScreen={true}
+							loading="lazy"
+							referrerPolicy="no-referrer-when-downgrade"
+						></iframe>
+					)}
 					{event.tickets?.length && (
 						<>
 							<h2>Tickets</h2>
