@@ -6,7 +6,7 @@ export default defineConfig({
 	plugins: [react()],
 	build: {
 		rollupOptions: {
-			external: ['./**/*.test.ts', './**/*.test.tsx'],
+			external: (id) => id.indexOf('.test.ts') > -1,
 		},
 	},
 });
