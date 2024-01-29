@@ -1,4 +1,5 @@
 import React from 'react';
+import '@testing-library/jest-dom';
 import { render as doRender } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../src/theme';
