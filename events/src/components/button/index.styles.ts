@@ -23,4 +23,10 @@ export const StyledButton = styled.button`
 		outline: 6px solid orange;
 		text-decoration: underline;
 	}
+
+	&[data-variant='secondary'] {
+		background: transparent;
+		border-color: #0d6efd;
+		color: #0d6efd;
+	}
 `;

@@ -24,9 +24,8 @@ export const AddEvent = () => {
 	const timeStartFieldRef = useRef<HTMLInputElement>(null);
 	const timeEndFieldRef = useRef<HTMLInputElement>(null);
 
-	const ticketCategoryFieldRef = useRef<HTMLInputElement>(null);
-	const ticketTypeFieldRef = useRef<HTMLInputElement>(null);
-	const ticketDescriptionFieldRef = useRef<HTMLInputElement>(null);
+	const ticketTypeFieldRef = useRef<HTMLSelectElement>(null);
+	const ticketInfoFieldRef = useRef<HTMLInputElement>(null);
 	const ticketPriceFieldRef = useRef<HTMLInputElement>(null);
 	const ticketBookingFeeFieldRef = useRef<HTMLInputElement>(null);
 
@@ -64,30 +63,22 @@ export const AddEvent = () => {
 
 	const addTicket = (event: { preventDefault: () => void }) => {
 		event.preventDefault();
-		const categoryValue = ticketCategoryFieldRef?.current?.value;
 		const typeValue = ticketTypeFieldRef?.current?.value;
-		const descriptionValue = ticketDescriptionFieldRef?.current?.value;
+		const infoValue = ticketInfoFieldRef?.current?.value;
 		const priceValue = ticketPriceFieldRef?.current?.value;
 		const bookingFeeValue = ticketBookingFeeFieldRef?.current?.value;
 
-		console.log(`>>> : ${typeValue}`);
-
-		// const isValid =
-		// 	!!categoryValue?.length &&
-		// 	!!typeValue?.length &&
-		// 	!isNaN(Number(priceValue)) &&
-		// 	!isNaN(Number(bookingFeeValue));
-		// if (isValid) {
-		// 	const newTicket: Ticket = {
-		// 		category: categoryValue,
-		// 		type: typeValue,
-		// 		description: descriptionValue,
-		// 		price: parseFloat(Number(priceValue).toFixed(2)),
-		// 		booking_fee: parseFloat(Number(bookingFeeValue).toFixed(2)),
-		// 		is_available: true,
-		// 	};
-		// 	setTickets([...tickets, newTicket]);
-		// }
+		const isValid = !!typeValue?.length && !isNaN(Number(priceValue)) && !isNaN(Number(bookingFeeValue));
+		if (isValid) {
+			const newTicket: Ticket = {
+				type: typeValue as Ticket['type'],
+				info: infoValue,
+				price: parseFloat(Number(priceValue).toFixed(2)),
+				booking_fee: parseFloat(Number(bookingFeeValue).toFixed(2)),
+				is_available: true,
+			};
+			setTickets([...tickets, newTicket]);
+		}
 	};
 
 	return (
@@ -153,17 +144,18 @@ export const AddEvent = () => {
 								id="type"
 								labelText="Type"
 								required={true}
-								options={['Adult', 'Child', 'Family', 'Concession']}
-							/>
-						</FieldItem>
-					</FieldRow>
-					<FieldRow>
-						<FieldItem>
-							<Input
-								description='(e.g. "General admission", "Balcony seating")'
-								fieldRef={ticketCategoryFieldRef}
-								id="category"
-								labelText="Category"
+								options={[
+									'Adult',
+									'Child',
+									'Senior',
+									'Student',
+									'Family',
+									'Group',
+									'Concession',
+									'Carer',
+									'Companion',
+									'Other',
+								]}
 							/>
 						</FieldItem>
 					</FieldRow>
@@ -171,9 +163,9 @@ export const AddEvent = () => {
 						<FieldItem>
 							<Input
 								description='(e.g. "Under 16 years", "2 adults and 2 children")'
-								fieldRef={ticketDescriptionFieldRef}
-								id="description"
-								labelText="Description"
+								fieldRef={ticketInfoFieldRef}
+								id="info"
+								labelText="Ticket information"
 							/>
 						</FieldItem>
 					</FieldRow>
@@ -198,7 +190,7 @@ export const AddEvent = () => {
 							/>
 						</FieldItem>
 					</FieldRow>
-					<Button label="Add ticket" onClick={addTicket} />
+					<Button label="Add ticket" onClick={addTicket} variant="secondary" />
 					{!!tickets.length && (
 						<>
 							<p>Tickets added:</p>
