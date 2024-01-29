@@ -10,7 +10,7 @@ export const EventsList = () => {
 
 	useEffect(() => {
 		(async () => {
-			const response = await fetch(`http://localhost:3000/api/events`);
+			const response = await fetch(`https://events-ticketing-api.vercel.app/api/events`);
 			const data = await response.json();
 			if (data?.data?.length) {
 				setEvents(data.data);
