@@ -13,11 +13,11 @@ describe('theme/palette', () => {
 				lightGrey: '#f9f9f9',
 			},
 			status: {
-				error: '#fbebe6',
+				error: '#ff0033',
 				info: '#CCDEFA',
 				success: '#e6f7ed',
 				warning: '#FEF7E6',
-			}
+			},
 		});
 	});
 });
