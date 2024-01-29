@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import type { Event } from '../../../../types/event';
 
 export const Events = () => {
 	const [events, setEvents] = useState([]);
@@ -17,7 +18,7 @@ export const Events = () => {
 			<h1>Events</h1>
 			{events && (
 				<ul>
-					{events.map((event, index: number) => {
+					{events.map((event: Event, index: number) => {
 						return (
 							<li key={index}>
 								<Link to={`/events/${event.slug}`}>{event.name}</Link>

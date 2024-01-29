@@ -1,7 +1,7 @@
 export interface FormFieldProps {
 	id: string;
 	isInvalid?: boolean;
-	onChange?: () => void;
+	onChange?: (e) => void;
 	value?: string;
 	fieldRef: React.RefObject<HTMLInputElement>;
 }
