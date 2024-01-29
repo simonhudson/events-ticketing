@@ -1,9 +1,10 @@
 import { useState, useRef } from 'react';
 import { httpStatusCodes } from '../../constants/httpStatusCodes';
-import { Form, Fieldset, FieldRow, FieldItem } from '../form/form.styles';
+import { Form, Fieldset, FieldRow, FieldItem, Legend } from '../form/form.styles';
 import { Button } from '../button';
 import { Input } from '../form/input';
 import { TextArea } from '../form/textarea';
+import { Select } from '../form/select';
 import { Alert } from '../alert';
 import type { Ticket } from '../../../../types/ticket';
 
@@ -69,22 +70,24 @@ export const AddEvent = () => {
 		const priceValue = ticketPriceFieldRef?.current?.value;
 		const bookingFeeValue = ticketBookingFeeFieldRef?.current?.value;
 
-		const isValid =
-			!!categoryValue?.length &&
-			!!typeValue?.length &&
-			!isNaN(Number(priceValue)) &&
-			!isNaN(Number(bookingFeeValue));
-		if (isValid) {
-			const newTicket: Ticket = {
-				category: categoryValue,
-				type: typeValue,
-				description: descriptionValue,
-				price: parseFloat(Number(priceValue).toFixed(2)),
-				booking_fee: parseFloat(Number(bookingFeeValue).toFixed(2)),
-				is_available: true,
-			};
-			setTickets([...tickets, newTicket]);
-		}
+		console.log(`>>> : ${typeValue}`);
+
+		// const isValid =
+		// 	!!categoryValue?.length &&
+		// 	!!typeValue?.length &&
+		// 	!isNaN(Number(priceValue)) &&
+		// 	!isNaN(Number(bookingFeeValue));
+		// if (isValid) {
+		// 	const newTicket: Ticket = {
+		// 		category: categoryValue,
+		// 		type: typeValue,
+		// 		description: descriptionValue,
+		// 		price: parseFloat(Number(priceValue).toFixed(2)),
+		// 		booking_fee: parseFloat(Number(bookingFeeValue).toFixed(2)),
+		// 		is_available: true,
+		// 	};
+		// 	setTickets([...tickets, newTicket]);
+		// }
 	};
 
 	return (
@@ -140,16 +143,17 @@ export const AddEvent = () => {
 					</FieldItem>
 				</FieldRow>
 				<Fieldset>
-					<legend>Add tickets</legend>
+					<Legend>Add tickets</Legend>
 					<FieldRow>
 						<FieldItem>
-							<Input
+							<Select
 								errorText="Please enter a type for this ticket"
 								description='(e.g. "Adult", "Family")'
 								fieldRef={ticketTypeFieldRef}
 								id="type"
 								labelText="Type"
 								required={true}
+								options={['Adult', 'Child', 'Family', 'Concession']}
 							/>
 						</FieldItem>
 					</FieldRow>

@@ -1,3 +1,23 @@
+import styled from 'styled-components';
+import { rem } from 'polished';
+
+export const StyledSelect = styled.select`
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: #fff;
+	background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+	background-position: right 0.75rem center;
+	background-repeat: no-repeat;
+	background-size: 16px 12px;
+	border-radius: ${rem(2)};
+	border: 1px solid #707070;
+	color: #5d5d5d;
+	display: block;
+	padding: ${rem(10)};
+	width: 100%;
+`;
+
 /*
 --bs-form-select-bg-img: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e);
     display: block;

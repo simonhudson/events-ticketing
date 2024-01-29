@@ -23,6 +23,7 @@ export const ErrorText = styled.span`
 	color: ${palette.status.error};
 	display: block;
 	font-family: ${font.sansSerif};
+	font-size: ${rem(14)};
 	padding: 0 0 ${spacingRem.xsm};
 `;
 

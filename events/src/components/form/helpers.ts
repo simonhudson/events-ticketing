@@ -1,5 +1,5 @@
 export const validateOnBlur = (
-	fieldRef: React.RefObject<HTMLInputElement | HTMLTextAreaElement>,
+	fieldRef: React.RefObject<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
 	setStateFunction: (isInvalid: boolean) => void
 ): void => {
 	const value = fieldRef?.current?.value;
