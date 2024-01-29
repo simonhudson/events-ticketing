@@ -26,15 +26,15 @@ export const Event = () => {
 							<h2>When</h2>
 							<p>{event.dateFormatted}</p>
 							<p>
-								{event.time?.start && event.time.start}
-								{event.time?.end && ` - ` + event.time.end}
+								<span>{event.time?.start && `Starts: ${event.time.start}`}</span>
+								<span>{event.time?.end && `Ends: ${event.time.end}`}</span>
 							</p>
 						</>
 					)}
 					<h2>Where</h2>
 					{event.map_url && (
 						<iframe
-							aria-label="Map showing the location of the event"
+							aria-label={`Map showing the location of the event`}
 							src={event.map_url}
 							width="600"
 							height="450"

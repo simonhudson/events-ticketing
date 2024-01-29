@@ -1,17 +1,16 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { theme } from '../src/theme';
 import { Wrap } from './theme/layout';
 import { GlobalStyles } from '../src/theme/global.styles';
 import { ThemeProvider } from 'styled-components';
+import { MainNavigation } from './components/main-navigation';
 
 export default function App() {
 	return (
 		<ThemeProvider theme={theme}>
 			<GlobalStyles />
+			<MainNavigation />
 			<Wrap>
-				<nav>
-					<Link to="/">Home</Link> <Link to="/events">Events</Link>
-				</nav>
 				<main>
 					<Outlet />
 				</main>

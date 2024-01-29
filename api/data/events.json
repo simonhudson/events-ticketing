@@ -57,5 +57,39 @@
             "start": "19:00",
             "end": "23:45"
         }
+    },
+    {
+        "date": "2024-05-17",
+        "description": "Ok, If you’ve just joined us, we’re talking about who is the best Lord. Lord of the Rings, of the Dance or of the Flies, that’s tonight’s hot topic. Ok, the votes are closed and clearly the rings and the flies have been roundly trounced by the quick feet of blouse wearing tycoon Michael Flatly. Flatly my dear, I don’t riverdance.\n\n... and that was Big Yellow Taxi by Joni Mitchell, a song in which Joni complains that they paved paradise to put up a parking lot. A measure which actually would have alleviated traffic congestion on the outskirts of paradise, something which Joni singularly fails to point out - perhaps because it doesn’t quite fit in with her blinkered view of the world. Nevertheless, nice song.\n\nOn making a documentary for canal boats: ‘This chemical toilet is a Saniflow 33, now this little babe can cope with anything, and I mean anything. Earlier on I put in a pound of mashed up Dundee cake, let's take a look...not a trace! Peace of mind I'm sure, especially if you have elderly relatives on board.’",
+        "id": "e03f5792-fdb1-4758-a932-96c6d35ef3e2",
+        "name": "Some event",
+        "slug": "some-event-2024-05-17",
+        "tickets": [
+            {
+                "type": "Adult",
+                "info": "",
+                "price": 25,
+                "booking_fee": 0,
+                "is_available": true
+            },
+            {
+                "type": "Child",
+                "info": "Under 5 years old",
+                "price": 10,
+                "booking_fee": 0,
+                "is_available": true
+            },
+            {
+                "type": "Family",
+                "info": "2 adults, 2 children under 16",
+                "price": 60,
+                "booking_fee": 0,
+                "is_available": true
+            }
+        ],
+        "time": {
+            "start": "20:00",
+            "end": "23:30"
+        }
     }
 ]

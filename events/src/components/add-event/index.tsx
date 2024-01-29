@@ -29,6 +29,21 @@ export const AddEvent = () => {
 	const ticketPriceFieldRef = useRef<HTMLInputElement>(null);
 	const ticketBookingFeeFieldRef = useRef<HTMLInputElement>(null);
 
+	const clearForm = () => {
+		setTickets([]);
+		setFeedbackMessage(undefined);
+		nameFieldRef.current!.value = '';
+		descriptionFieldRef.current!.value = '';
+		mapFieldRef.current!.value = '';
+		dateFieldRef.current!.value = '';
+		timeStartFieldRef.current!.value = '';
+		timeEndFieldRef.current!.value = '';
+		ticketTypeFieldRef.current!.value = '';
+		ticketInfoFieldRef.current!.value = '';
+		ticketPriceFieldRef.current!.value = '';
+		ticketBookingFeeFieldRef.current!.value = '';
+	};
+
 	const onSubmit = async (event: { preventDefault: () => void }) => {
 		event.preventDefault();
 		const nameValue = nameFieldRef?.current?.value;
@@ -55,9 +70,15 @@ export const AddEvent = () => {
 				}),
 				headers: { 'Content-Type': 'application/json' },
 			});
-			if (postResponse.status === httpStatusCodes.OK)
-				setFeedbackMessage({ type: 'success', message: 'Event added' });
-			else setFeedbackMessage({ type: 'danger', message: 'Unable to add event' });
+			if (postResponse.status === httpStatusCodes.OK) {
+				setFeedbackMessage({
+					type: 'success',
+					message: `You have successfully added <strong>${nameValue}</strong>`,
+				});
+				clearForm();
+			} else {
+				setFeedbackMessage({ type: 'danger', message: 'Unable to add event' });
+			}
 		}
 	};
 
@@ -139,7 +160,6 @@ export const AddEvent = () => {
 						<FieldItem>
 							<Select
 								errorText="Please enter a type for this ticket"
-								description='(e.g. "Adult", "Family")'
 								fieldRef={ticketTypeFieldRef}
 								id="type"
 								labelText="Type"

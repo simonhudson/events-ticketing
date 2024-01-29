@@ -5,13 +5,11 @@ export type ButtonProps = {
 	label: string;
 	onClick?: (e: MouseEvent) => void;
 	type?: 'button' | 'submit' | 'reset';
-	variant?: 'primary' | 'secondary';
 };
 
-export const Button = ({ label, onClick, type = 'button', variant = 'primary' }: ButtonProps) => {
+export const Button = ({ label, onClick, type = 'button' }: ButtonProps) => {
 	return (
 		<StyledButton
-			data-variant={variant}
 			onClick={(e: MouseEvent) => {
 				if (onClick) onClick(e);
 			}}

@@ -31,6 +31,7 @@ export const Button = styled.button`
 
 export const Fieldset = styled.fieldset`
 	background: #f5f5f5;
+	border: 0;
 	margin: 0 0 ${spacingRem.md};
 	padding: ${rem(30)};
 `;

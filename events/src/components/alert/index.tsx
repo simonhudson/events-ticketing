@@ -8,7 +8,7 @@ type AlertProps = {
 export const Alert = ({ message, type }: AlertProps) => {
 	return (
 		<Wrapper data-alert-type={type} role="alert">
-			<p>{message}</p>
+			<p dangerouslySetInnerHTML={{ __html: message }} />
 		</Wrapper>
 	);
 };
