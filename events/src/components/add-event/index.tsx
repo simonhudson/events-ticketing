@@ -197,7 +197,7 @@ export const AddEvent = () => {
 							<ul>
 								{tickets.map((ticket, index) => (
 									<li key={index}>
-										{ticket.category}, {ticket.type}, {ticket.price}, {ticket.booking_fee}
+										{ticket.type}, {ticket.price}, {ticket.booking_fee}
 									</li>
 								))}
 							</ul>

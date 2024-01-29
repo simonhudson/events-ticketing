@@ -50,8 +50,7 @@ export const Event = () => {
 								{event.tickets.map((ticket, index: number) => {
 									return (
 										<li key={index}>
-											{ticket.type} {ticket.description && `(${ticket.description})`} - £
-											{ticket.price}
+											{ticket.type} {ticket.info && `(${ticket.info})`} - &pound;{ticket.price}
 										</li>
 									);
 								})}
