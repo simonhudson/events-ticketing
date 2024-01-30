@@ -32,10 +32,17 @@ describe('POST /', () => {
 		expect(response.statusCode).toBe(200);
 	});
 
-	it('should respond with a 400 status code for invalid request body', async () => {
+	it('should return error for invalid request body', async () => {
 		const requestBody = {};
 		const response = await request(app).post('/').send(requestBody);
-		expect(response.statusCode).toBe(400);
+
+		expect(JSON.parse(response.text)).toEqual({
+			error: true,
+			endpoint: '/',
+			method: 'POST',
+			err: 'No request body found',
+			statusCode: 400,
+		});
 	});
 });
 

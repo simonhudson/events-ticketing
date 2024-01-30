@@ -7,6 +7,7 @@ const router = express.Router();
 import type { Event } from '../../types/event';
 import { randomUUID } from 'crypto';
 import { slugify } from '../helpers/slugify';
+import { httpStatusCodes } from '../constants/httpStatusCodes';
 
 export const getEvents = async ({ req }: { req: Request }) => {
 	const events: Event[] = await get({ req, endpoint: 'events' });
@@ -29,7 +30,8 @@ router.get('/', async (req: Request, res: Response) => {
 router.post('/', async (req: Request, res: Response) => {
 	const requestBody = req.body;
 
-	if (!Object.keys(requestBody).length) return res.send(handleError({ req, err: 'No request body found' }));
+	if (!Object.keys(requestBody).length)
+		return res.send(handleError({ req, err: 'No request body found', statusCode: httpStatusCodes.BAD_REQUEST }));
 
 	const existingEvents: Event[] = await get({ req, endpoint: 'events' });
 	const newEventId = randomUUID();
@@ -53,7 +55,7 @@ router.post('/', async (req: Request, res: Response) => {
 		await post({ req, endpoint: 'events', data: [...existingEvents, newEvent] });
 		handleResponse({ res, data: { message: 'Event created successfully' } });
 	} catch (err: any) {
-		handleError({ req, err });
+		handleError({ req, err, statusCode: err.statusCode });
 	}
 });
 

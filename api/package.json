@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev --respawn --transpile-only ./index.ts",
-    "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test": "jest --colors",
+    "test:coverage": "jest --colors --coverage"
   },
   "keywords": [],
   "author": "",

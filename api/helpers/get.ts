@@ -13,6 +13,6 @@ export const get = async ({ req, endpoint }: GetParams) => {
 		const data = JSON.parse(json.toString());
 		return data;
 	} catch (err: any) {
-		handleError({ req, err });
+		handleError({ req, err, statusCode: err.statusCode });
 	}
 };
