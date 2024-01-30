@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { media } from './media';
-import { palette } from './palette';
 
 export const Wrap = styled.div`
 	margin: 0 auto;
@@ -18,7 +17,7 @@ export const Wrap = styled.div`
 export const VisuallyHidden = styled.span`
 	border: 0;
 	clip: rect(0 0 0 0);
-	color: ${palette.primary.white};
+	color: #fff;
 	height: 1px;
 	margin: -1px;
 	overflow: hidden;

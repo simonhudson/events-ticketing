@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { spacingRem } from '../../../theme/spacing';
+import { baseInputStyles } from '../input/index.styles';
 
 export const StyledSelect = styled.select`
-	border-radius: ${spacingRem.xsm};
-	padding: ${spacingRem.sm};
+	${baseInputStyles}
 `;

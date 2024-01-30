@@ -26,18 +26,6 @@ export const NavLink = styled(Link)`
 	text-transform: uppercase;
 
 	&.current-page {
-		border-bottom: 1px solid orange;
-
-		&:after {
-			border-bottom: ${rem(10)} solid orange;
-			border-left: ${rem(10)} solid transparent;
-			bottom: 0;
-			content: '';
-			height: 0;
-			left: 50%;
-			position: absolute;
-			transform: translateX(-50%) translateY(50%) rotate(-135deg);
-			width: 0;
-		}
+		border-bottom: 3px solid orange;
 	}
 `;
