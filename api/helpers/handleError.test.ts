@@ -1,7 +1,7 @@
 import { Request } from 'express';
 import { handleError } from './handleError';
 
-describe('handleError function', () => {
+describe('handleError', () => {
 	it('should return an error object with the correct properties', () => {
 		const mockRequest = {
 			originalUrl: '/test',

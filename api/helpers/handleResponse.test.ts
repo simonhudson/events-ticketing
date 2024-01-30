@@ -1,7 +1,7 @@
 import { Response } from 'express';
 import { handleResponse } from './handleResponse';
 
-describe('handleResponse function', () => {
+describe('handleResponse', () => {
 	let mockResponse: Partial<Response>;
 	let data: any[];
 

@@ -6,7 +6,7 @@ import { get } from './get';
 jest.mock('fs');
 jest.mock('./handleError');
 
-describe('get function', () => {
+describe('get', () => {
 	let mockRequest: Partial<Request>;
 	let endpoint: string;
 

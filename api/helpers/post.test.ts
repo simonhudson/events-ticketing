@@ -6,7 +6,7 @@ import { post } from './post';
 jest.mock('fs');
 jest.mock('../helpers/handleError');
 
-describe('post function', () => {
+describe('post', () => {
 	let mockRequest: Partial<Request>;
 	let endpoint: string;
 	let data: any;

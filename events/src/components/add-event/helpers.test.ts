@@ -2,7 +2,7 @@ import { submitEvent } from './helpers';
 
 const ORIGINAL_FETCH = global.fetch;
 
-describe('submitEvent function', () => {
+describe('submitEvent', () => {
 	beforeEach(() => {
 		global.fetch = jest.fn();
 	});
