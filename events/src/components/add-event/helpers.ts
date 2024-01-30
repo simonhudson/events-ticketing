@@ -27,5 +27,5 @@ export const submitEvent = async ({ name, description, location, map_url, date, 
 		}),
 		headers: { 'Content-Type': 'application/json' },
 	});
-	return response;
+	return await response.json();
 };

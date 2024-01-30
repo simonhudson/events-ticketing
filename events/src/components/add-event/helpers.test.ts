@@ -13,6 +13,7 @@ describe('submitEvent', () => {
 	});
 
 	it('should call fetch with the correct arguments', async () => {
+		// Given
 		const mockSubmitEventArgs = {
 			name: 'Test event',
 			description: 'Test description',
@@ -32,8 +33,10 @@ describe('submitEvent', () => {
 			})
 		) as jest.Mock;
 
+		// When
 		await submitEvent(mockSubmitEventArgs);
 
+		// Then
 		expect(global.fetch).toHaveBeenCalledWith('http://localhost:3000/api/events', {
 			method: 'post',
 			body: JSON.stringify(mockSubmitEventArgs),
@@ -42,6 +45,7 @@ describe('submitEvent', () => {
 	});
 
 	it('should return the response from fetch', async () => {
+		// Given
 		global.fetch = jest.fn(() =>
 			Promise.resolve({
 				json: () => Promise.resolve(123),
@@ -49,6 +53,7 @@ describe('submitEvent', () => {
 			})
 		) as jest.Mock;
 
+		// When
 		const response = await submitEvent({
 			name: 'Test event',
 			location: 'Test location',
@@ -56,6 +61,7 @@ describe('submitEvent', () => {
 			tickets: [],
 		});
 
-		expect(response).toEqual({ status: 200 });
+		// Then
+		expect(response).toEqual(123);
 	});
 });

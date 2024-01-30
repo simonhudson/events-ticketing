@@ -71,7 +71,7 @@ export const AddEvent = () => {
 					end: timeEndValue,
 				},
 			});
-			if (response.status === httpStatusCodes.OK) {
+			if (response?.status === httpStatusCodes.OK) {
 				setFeedbackMessage({
 					type: 'success',
 					message: `You have successfully added <strong>${nameValue}</strong>`,
