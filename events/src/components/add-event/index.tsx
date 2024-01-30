@@ -116,7 +116,6 @@ export const AddEvent = () => {
 			<Form id="add-event" name="add-event" onSubmit={(e) => onSubmit(e)} noValidate>
 				<Fieldset>
 					<Legend>What</Legend>
-
 					<FieldRow>
 						<FieldItem>
 							<Input

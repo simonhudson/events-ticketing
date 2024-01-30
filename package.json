@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:api": "cd api && npm run test && cd ../",
+    "test:events": "cd events && npm run test && cd ../"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC"
