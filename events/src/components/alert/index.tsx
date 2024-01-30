@@ -1,9 +1,5 @@
 import { Wrapper } from './index.styles';
-
-type AlertProps = {
-	message: string;
-	type: 'danger' | 'success';
-};
+import type { AlertProps } from './alert';
 
 export const Alert = ({ message, type }: AlertProps) => {
 	return (

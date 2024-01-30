@@ -9,15 +9,11 @@ import { Alert } from '../alert';
 import { TicketsList } from '../tickets-list';
 import { submitEvent } from './helpers';
 import type { Ticket } from '../../../../types/ticket';
-
-type FeedbackMessage = {
-	type: 'danger' | 'success';
-	message: string;
-};
+import type { AlertProps } from '../alert/alert';
 
 export const AddEvent = () => {
 	const [tickets, setTickets] = useState<Ticket[]>([]);
-	const [feedbackMessage, setFeedbackMessage] = useState<FeedbackMessage | undefined>();
+	const [feedbackMessage, setFeedbackMessage] = useState<AlertProps | undefined>();
 
 	const nameFieldRef = useRef<HTMLInputElement>(null);
 	const descriptionFieldRef = useRef<HTMLTextAreaElement>(null);
