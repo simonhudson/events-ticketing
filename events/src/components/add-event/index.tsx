@@ -7,6 +7,7 @@ import { TextArea } from '../form/textarea';
 import { Select } from '../form/select';
 import { Alert } from '../alert';
 import { TicketsList } from '../tickets-list';
+import { submitEvent } from './helpers';
 import type { Ticket } from '../../../../types/ticket';
 
 type FeedbackMessage = {
@@ -62,23 +63,19 @@ export const AddEvent = () => {
 
 		const isValid = !!nameValue?.length && !!locationValue?.length && !!dateValue?.length && tickets.length;
 		if (isValid) {
-			const postResponse = await fetch('http://localhost:3000/api/events', {
-				method: 'post',
-				body: JSON.stringify({
-					name: nameValue,
-					description: descriptionValue,
-					location: locationValue,
-					map_url: mapUrlValue,
-					date: dateValue,
-					tickets,
-					time: {
-						start: timeStartValue,
-						end: timeEndValue,
-					},
-				}),
-				headers: { 'Content-Type': 'application/json' },
+			const response = await submitEvent({
+				name: nameValue,
+				description: descriptionValue,
+				location: locationValue,
+				map_url: mapUrlValue,
+				date: dateValue,
+				tickets,
+				time: {
+					start: timeStartValue,
+					end: timeEndValue,
+				},
 			});
-			if (postResponse.status === httpStatusCodes.OK) {
+			if (response.status === httpStatusCodes.OK) {
 				setFeedbackMessage({
 					type: 'success',
 					message: `You have successfully added <strong>${nameValue}</strong>`,
@@ -187,15 +184,16 @@ export const AddEvent = () => {
 								required={true}
 								options={[
 									'Adult',
+									'Carer',
 									'Child',
-									'Senior',
-									'Student',
+									'Companion',
+									'Concession',
 									'Family',
 									'Group',
-									'Concession',
-									'Carer',
-									'Companion',
 									'Other',
+									'Senior',
+									'Student',
+									'VIP',
 								]}
 							/>
 						</FieldItem>

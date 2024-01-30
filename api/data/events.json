@@ -23,8 +23,8 @@
                 "is_available": true
             },
             {
-                "type": "Other",
-                "info": "VIP",
+                "type": "VIP",
+                "info": "Includes meet and greet",
                 "price": 250,
                 "booking_fee": 2.99,
                 "is_available": false

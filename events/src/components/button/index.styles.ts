@@ -1,18 +1,15 @@
 import styled from 'styled-components';
 import { rem } from 'polished';
-import { BASE_SIZE, spacingRem } from '../../theme/spacing';
-import { font } from '../../theme/font';
 
 export const StyledButton = styled.button`
 	align-items: center;
 	background: #0d6efd;
-	border-radius: ${spacingRem.xsm};
+	border-radius: ${rem(4)};
 	border: 3px solid transparent;
 	color: #fff;
 	display: flex;
-	font-family: ${font.sansSerif};
-	font-size: ${rem(BASE_SIZE)};
-	padding: ${spacingRem.sm};
+	font-size: ${rem(16)};
+	padding: ${rem(10)};
 	text-decoration: none;
 
 	&:hover {

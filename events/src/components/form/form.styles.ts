@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 import { rem } from 'polished';
-import { spacingRem } from '../../theme/spacing';
-import { palette } from '../../theme/palette';
 import { media } from '../../theme/media';
 import { StyledButton } from '../button/index.styles';
 
@@ -31,19 +29,10 @@ export const FieldItem = styled.div`
 	`)}
 `;
 
-export const Button = styled.button`
-	background: ${palette.primary.brand};
-	border: 0;
-	border-radius: ${spacingRem.xsm};
-	color: ${palette.primary.white};
-	font-weight: bold;
-	padding: ${spacingRem.sm};
-`;
-
 export const Fieldset = styled.fieldset`
 	background: #f5f5f5;
 	border: 0;
-	margin: 0 0 ${spacingRem.md};
+	margin: 0 0 ${rem(32)};
 	padding: ${rem(30)};
 `;
 
@@ -59,6 +48,6 @@ export const SubmitInput = styled(StyledButton)``;
 
 export const InvalidField = `
 	&[aria-invalid='true'] {
-		border: 2px solid ${palette.status.error};
+		border: 2px solid #ff0033;
 	}
 `;

@@ -1,15 +1,16 @@
 export type Ticket = {
 	type:
 		| 'Adult'
+		| 'Carer'
 		| 'Child'
-		| 'Senior'
-		| 'Student'
+		| 'Companion'
+		| 'Concession'
 		| 'Family'
 		| 'Group'
-		| 'Concession'
-		| 'Carer'
-		| 'Companion'
-		| 'Other';
+		| 'Other'
+		| 'Senior'
+		| 'Student'
+		| 'VIP';
 	info?: string;
 	price?: number;
 	booking_fee?: number;

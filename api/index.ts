@@ -1,6 +1,5 @@
 import express from 'express';
 import events from './events';
-import tickets from './tickets';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
@@ -17,6 +16,5 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(`${API_ROOT}/events`, events);
-app.use(`${API_ROOT}/tickets`, tickets);
 
 export default app;

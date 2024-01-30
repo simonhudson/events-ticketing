@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import { rem } from 'polished';
 
-export const TicketsList = styled.ul`
-	width: 50%;
-`;
+export const TicketsList = styled.ul``;
 
 export const TicketsItem = styled.li`
 	align-items: center;
