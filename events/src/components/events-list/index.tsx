@@ -3,37 +3,44 @@ import { Link } from 'react-router-dom';
 import { EventsList as StyledEventsList, EventsItem, EventName } from './index.styles';
 import type { Event } from '../../../../types/event';
 
+const ASCENDING = 'asc';
+const DESCENDING = 'desc';
+
+const sortData = (data: Event[], sortDirection: typeof ASCENDING | typeof DESCENDING): Event[] => {
+	const sorted =
+		sortDirection === ASCENDING
+			? data.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+			: data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+	return sorted;
+};
+
 export const EventsList = () => {
 	const [events, setEvents] = useState<Event[] | undefined>();
-	const [sortedEvents, setSortedEvents] = useState<Event[] | undefined>();
-	const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
-
-	useEffect(() => {
-		(async () => {
-			const response = await fetch(`https://events-ticketing-api.vercel.app/api/events`);
-			const data = await response.json();
-			if (data?.data?.length) {
-				setEvents(data.data);
-			}
-		})();
-	}, []);
+	const [sortDirection, setSortDirection] = useState<typeof ASCENDING | typeof DESCENDING>(ASCENDING);
 
 	useEffect(() => {
 		if (events) {
-			const sorted =
-				sortDirection === 'asc'
-					? events.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-					: events.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-			setSortedEvents(sorted);
+			setEvents(sortData(events, sortDirection));
 		}
-	}, [events, sortDirection]);
+	}, [sortDirection, events]);
+
+	useEffect(() => {
+		(async () => {
+			const response = await fetch(`http://localhost:3000/api/events`);
+			const data = await response.json();
+			if (data?.data?.length) {
+				const sorted = sortData(data.data, sortDirection);
+				setEvents(sorted);
+			}
+		})();
+	}, [sortDirection]);
 
 	return (
 		<>
-			<button onClick={() => setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc')}>Sort</button>
+			<button onClick={() => setSortDirection(sortDirection === ASCENDING ? DESCENDING : ASCENDING)}>Sort</button>
 			<StyledEventsList>
-				{!!sortedEvents &&
-					sortedEvents.map((event: Event, index: number) => {
+				{!!events &&
+					events.map((event: Event, index: number) => {
 						return (
 							<EventsItem key={index}>
 								<EventName>{event.name}</EventName>
