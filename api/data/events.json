@@ -77,5 +77,213 @@
             "start": "11:00",
             "end": "20:00"
         }
+    },
+    {
+        "date": "2022-12-31",
+        "description": "Test event",
+        "id": "1f18ef13-65e1-40e3-b2b5-caae7db38c23",
+        "location": "Test location",
+        "map_url": "https://test.com",
+        "name": "Test",
+        "slug": "test-2022-12-31",
+        "tickets": 100,
+        "time": {
+            "start": "10:00",
+            "end": "12:00"
+        }
+    },
+    {
+        "date": "2022-12-31",
+        "description": "Test event",
+        "id": "9daed1eb-97f5-4580-b4e2-f38ec2377786",
+        "location": "Test location",
+        "map_url": "https://test.com",
+        "name": "Test",
+        "slug": "test-2022-12-31",
+        "tickets": 100,
+        "time": {
+            "start": "10:00",
+            "end": "12:00"
+        }
+    },
+    {
+        "date": "2022-12-31",
+        "description": "Test event",
+        "id": "58ac3a80-2d96-4177-8538-a4de8edd6b7b",
+        "location": "Test location",
+        "map_url": "https://test.com",
+        "name": "Test",
+        "slug": "test-2022-12-31",
+        "tickets": [
+            {
+                "type": "Adult",
+                "info": "This is some info about the ticket",
+                "price": 10.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            },
+            {
+                "type": "Child",
+                "info": "Under 16 years old",
+                "price": 7.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            },
+            {
+                "type": "Vip",
+                "info": "",
+                "price": 700.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            }
+        ],
+        "time": {
+            "start": "10:00",
+            "end": "12:00"
+        }
+    },
+    {
+        "date": "2022-12-31",
+        "description": "Test event",
+        "id": "99c7ee9e-543e-4521-b36a-1b9b8dddd657",
+        "location": "Test location",
+        "map_url": "https://test.com",
+        "name": "Test",
+        "slug": "test-2022-12-31",
+        "tickets": [
+            {
+                "type": "Adult",
+                "info": "This is some info about the ticket",
+                "price": 10.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            },
+            {
+                "type": "Child",
+                "info": "Under 16 years old",
+                "price": 7.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            },
+            {
+                "type": "Vip",
+                "info": "",
+                "price": 700.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            }
+        ],
+        "time": {
+            "start": "10:00",
+            "end": "12:00"
+        }
+    },
+    {
+        "date": "2022-12-31",
+        "description": "Test event",
+        "id": "fd10eea0-d449-4127-983f-45d891a3b0d9",
+        "location": "Test location",
+        "map_url": "https://test.com",
+        "name": "Test",
+        "slug": "test-2022-12-31",
+        "tickets": [
+            {
+                "type": "Adult",
+                "info": "This is some info about the ticket",
+                "price": 10.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            },
+            {
+                "type": "Child",
+                "info": "Under 16 years old",
+                "price": 7.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            },
+            {
+                "type": "Vip",
+                "info": "",
+                "price": 700.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            }
+        ],
+        "time": {
+            "start": "10:00",
+            "end": "12:00"
+        }
+    },
+    {
+        "date": "2022-12-31",
+        "description": "Test event",
+        "id": "e65a679d-66d1-4b77-96fd-5fa955392a8d",
+        "location": "Test location",
+        "map_url": "https://test.com",
+        "name": "Test",
+        "slug": "test-2022-12-31",
+        "tickets": [
+            {
+                "type": "Adult",
+                "info": "This is some info about the ticket",
+                "price": 10.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            },
+            {
+                "type": "Child",
+                "info": "Under 16 years old",
+                "price": 7.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            },
+            {
+                "type": "Vip",
+                "info": "",
+                "price": 700.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            }
+        ],
+        "time": {
+            "start": "10:00",
+            "end": "12:00"
+        }
+    },
+    {
+        "date": "2022-12-31",
+        "description": "Test event",
+        "id": "610c6537-6191-43f8-9e6f-62b6f90a7ccd",
+        "location": "Test location",
+        "map_url": "https://test.com",
+        "name": "Test",
+        "slug": "test-2022-12-31",
+        "tickets": [
+            {
+                "type": "Adult",
+                "info": "This is some info about the ticket",
+                "price": 10.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            },
+            {
+                "type": "Child",
+                "info": "Under 16 years old",
+                "price": 7.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            },
+            {
+                "type": "Vip",
+                "info": "",
+                "price": 700.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            }
+        ],
+        "time": {
+            "start": "10:00",
+            "end": "12:00"
+        }
     }
 ]

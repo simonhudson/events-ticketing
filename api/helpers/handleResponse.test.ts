@@ -6,19 +6,22 @@ describe('handleResponse function', () => {
 	let data: any[];
 
 	beforeEach(() => {
-		data = [{ id: 1 }, { id: 2 }];
+		data = [{ key: 'value' }];
 		mockResponse = {
 			statusCode: 200,
+			setHeader: jest.fn(),
 			json: jest.fn(),
 		};
 	});
 
-	it('should call res.json with the correct return object', () => {
+	it('should set the correct headers and call res.json with the correct argument', () => {
 		handleResponse({ res: mockResponse as Response, data });
+		expect(mockResponse.setHeader).toHaveBeenCalledWith('Access-Control-Allow-Origin', '*');
+		expect(mockResponse.setHeader).toHaveBeenCalledWith('Content-Type', 'application/json');
 		expect(mockResponse.json).toHaveBeenCalledWith({
-			status: mockResponse.statusCode,
+			status: 200,
 			metadata: {
-				count: data.length,
+				count: 1,
 			},
 			data: data,
 		});
