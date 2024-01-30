@@ -38,6 +38,8 @@ router.post('/', async (req: Request, res: Response) => {
 		date: requestBody.date,
 		description: requestBody.description,
 		id: newEventId,
+		location: requestBody.location,
+		map_url: requestBody.map_url,
 		name: requestBody.name,
 		slug: `${slugify(requestBody.name)}-${requestBody.date}`,
 		tickets: requestBody.tickets,

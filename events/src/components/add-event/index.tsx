@@ -6,6 +6,7 @@ import { Input } from '../form/input';
 import { TextArea } from '../form/textarea';
 import { Select } from '../form/select';
 import { Alert } from '../alert';
+import { TicketsList } from '../tickets-list';
 import type { Ticket } from '../../../../types/ticket';
 
 type FeedbackMessage = {
@@ -19,6 +20,7 @@ export const AddEvent = () => {
 
 	const nameFieldRef = useRef<HTMLInputElement>(null);
 	const descriptionFieldRef = useRef<HTMLTextAreaElement>(null);
+	const locationFieldRef = useRef<HTMLTextAreaElement>(null);
 	const mapFieldRef = useRef<HTMLInputElement>(null);
 	const dateFieldRef = useRef<HTMLInputElement>(null);
 	const timeStartFieldRef = useRef<HTMLInputElement>(null);
@@ -31,13 +33,17 @@ export const AddEvent = () => {
 
 	const clearForm = () => {
 		setTickets([]);
-		setFeedbackMessage(undefined);
+		clearTicketForm();
 		nameFieldRef.current!.value = '';
 		descriptionFieldRef.current!.value = '';
+		locationFieldRef.current!.value = '';
 		mapFieldRef.current!.value = '';
 		dateFieldRef.current!.value = '';
 		timeStartFieldRef.current!.value = '';
 		timeEndFieldRef.current!.value = '';
+	};
+
+	const clearTicketForm = () => {
 		ticketTypeFieldRef.current!.value = '';
 		ticketInfoFieldRef.current!.value = '';
 		ticketPriceFieldRef.current!.value = '';
@@ -48,18 +54,20 @@ export const AddEvent = () => {
 		event.preventDefault();
 		const nameValue = nameFieldRef?.current?.value;
 		const descriptionValue = descriptionFieldRef?.current?.value;
+		const locationValue = locationFieldRef?.current?.value;
 		const mapUrlValue = mapFieldRef?.current?.value;
 		const dateValue = dateFieldRef?.current?.value;
 		const timeStartValue = timeStartFieldRef?.current?.value;
 		const timeEndValue = timeEndFieldRef?.current?.value;
 
-		const isValid = !!nameValue?.length && !!descriptionValue?.length && !!dateValue?.length && tickets.length;
+		const isValid = !!nameValue?.length && !!locationValue?.length && !!dateValue?.length && tickets.length;
 		if (isValid) {
 			const postResponse = await fetch('http://localhost:3000/api/events', {
 				method: 'post',
 				body: JSON.stringify({
 					name: nameValue,
 					description: descriptionValue,
+					location: locationValue,
 					map_url: mapUrlValue,
 					date: dateValue,
 					tickets,
@@ -105,55 +113,69 @@ export const AddEvent = () => {
 	return (
 		<>
 			<h1>Add event</h1>
-			{feedbackMessage && <Alert type={feedbackMessage.type} message={feedbackMessage.message} />}
 			<Form id="add-event" name="add-event" onSubmit={(e) => onSubmit(e)} noValidate>
-				<FieldRow>
-					<FieldItem>
-						<Input
-							errorText="Please enter a name for your event"
-							fieldRef={nameFieldRef}
-							id="name"
-							labelText="Name"
-							required={true}
-						/>
-					</FieldItem>
-				</FieldRow>
-				<FieldRow>
-					<FieldItem>
-						<TextArea
-							fieldRef={descriptionFieldRef}
-							id="description"
-							labelText="Description"
-							rows={10}
-							cols={50}
-						/>
-					</FieldItem>
-				</FieldRow>
-				<FieldRow>
-					<FieldItem>
-						<Input fieldRef={mapFieldRef} id="map_url" labelText="Map URL" />
-					</FieldItem>
-				</FieldRow>
-				<FieldRow>
-					<FieldItem>
-						<Input
-							errorText="Please enter a date for your event"
-							fieldRef={dateFieldRef}
-							id="date"
-							labelText="Date"
-							required={true}
-							type="date"
-						/>
-					</FieldItem>
-				</FieldRow>
-				<FieldRow>
-					<FieldItem>
-						<Input fieldRef={timeStartFieldRef} id="timeStart" labelText="Start Time" type="time" />
-					</FieldItem>
-					<FieldItem>
-						<Input fieldRef={timeEndFieldRef} id="timeEnd" labelText="Finish Time" type="time" />
-					</FieldItem>
-				</FieldRow>
+				<Fieldset>
+					<Legend>What</Legend>
+
+					<FieldRow>
+						<FieldItem>
+							<Input
+								errorText="Please enter a name for your event"
+								fieldRef={nameFieldRef}
+								id="name"
+								labelText="Name"
+								required={true}
+							/>
+						</FieldItem>
+					</FieldRow>
+					<FieldRow>
+						<FieldItem>
+							<TextArea fieldRef={descriptionFieldRef} id="description" labelText="Description" />
+						</FieldItem>
+					</FieldRow>
+				</Fieldset>
+				<Fieldset>
+					<Legend>Where</Legend>
+					<FieldRow>
+						<FieldItem>
+							<TextArea
+								fieldRef={locationFieldRef}
+								id="location"
+								labelText="Location"
+								required={true}
+								errorText="Please enter a location for your event"
+							/>
+						</FieldItem>
+					</FieldRow>
+					<FieldRow>
+						<FieldItem>
+							<Input fieldRef={mapFieldRef} id="map_url" labelText="Map URL" />
+						</FieldItem>
+					</FieldRow>
+				</Fieldset>
+				<Fieldset>
+					<Legend>When</Legend>
+					<FieldRow>
+						<FieldItem>
+							<Input
+								errorText="Please enter a date for your event"
+								fieldRef={dateFieldRef}
+								id="date"
+								labelText="Date"
+								required={true}
+								type="date"
+							/>
+						</FieldItem>
+					</FieldRow>
+					<FieldRow>
+						<FieldItem>
+							<Input fieldRef={timeStartFieldRef} id="timeStart" labelText="Start Time" type="time" />
+						</FieldItem>
+						<FieldItem>
+							<Input fieldRef={timeEndFieldRef} id="timeEnd" labelText="Finish Time" type="time" />
+						</FieldItem>
+					</FieldRow>
+				</Fieldset>
 				<Fieldset>
 					<Legend>Add tickets</Legend>
 					<FieldRow>
@@ -210,21 +232,22 @@ export const AddEvent = () => {
 							/>
 						</FieldItem>
 					</FieldRow>
-					<Button label="Add ticket" onClick={addTicket} variant="secondary" />
+					<FieldRow>
+						<Button label="Add ticket" onClick={addTicket} variant="secondary" />
+					</FieldRow>
 					{!!tickets.length && (
 						<>
-							<p>Tickets added:</p>
-							<ul>
-								{tickets.map((ticket, index) => (
-									<li key={index}>
-										{ticket.type}, {ticket.price}, {ticket.booking_fee}
-									</li>
-								))}
-							</ul>
+							<p>
+								<strong>Tickets added:</strong>
+							</p>
+							<TicketsList tickets={tickets} />
 						</>
 					)}
 				</Fieldset>
-				<Button type="submit" label="Add event" />
+				<FieldRow>
+					<Button type="submit" label="Add event" />
+				</FieldRow>
+				{feedbackMessage && <Alert type={feedbackMessage.type} message={feedbackMessage.message} />}
 			</Form>
 		</>
 	);

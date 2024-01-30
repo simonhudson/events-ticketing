@@ -2,9 +2,11 @@ import styled from 'styled-components';
 import { rem } from 'polished';
 import { spacingRem } from '../../theme/spacing';
 import { palette } from '../../theme/palette';
+import { media } from '../../theme/media';
 import { StyledButton } from '../button/index.styles';
 
 export const Form = styled.form`
+	padding: ${rem(30)} 0;
 	text-align: left;
 `;
 
@@ -13,11 +15,20 @@ export const FieldRow = styled.div`
 	flex-direction: row;
 	gap: ${rem(20)};
 	padding: 0 0 ${rem(30)};
+
+	&:last-of-type {
+		padding-bottom: 0;
+	}
 `;
 
 export const FieldItem = styled.div`
 	display: flex;
 	flex-direction: column;
+	flex-grow: 1;
+
+	${media.tabletLandscape(`
+		flex-grow: 0.33;
+	`)}
 `;
 
 export const Button = styled.button`

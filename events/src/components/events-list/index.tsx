@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { EventsList as StyledEventsList, EventsItem, EventName } from './index.styles';
+import { EventsList as StyledEventsList, EventsItem, EventDetailsItem } from './index.styles';
 import type { Event } from '../../../../types/event';
 
 const ASCENDING = 'asc';
@@ -37,17 +37,21 @@ export const EventsList = () => {
 
 	return (
 		<>
-			<button onClick={() => setSortDirection(sortDirection === ASCENDING ? DESCENDING : ASCENDING)}>Sort</button>
+			{events && events.length > 1 && (
+				<button onClick={() => setSortDirection(sortDirection === ASCENDING ? DESCENDING : ASCENDING)}>
+					Sort by date {sortDirection === ASCENDING ? '↑' : '↓'}
+				</button>
+			)}
 			<StyledEventsList>
 				{!!events &&
 					events.map((event: Event, index: number) => {
 						return (
 							<EventsItem key={index}>
-								<EventName>{event.name}</EventName>
-								<span>{event.date && event.dateFormatted}</span>
-								<span>
+								<EventDetailsItem>{event.name}</EventDetailsItem>
+								<EventDetailsItem>{event.date && event.dateFormatted}</EventDetailsItem>
+								<EventDetailsItem>
 									<Link to={`/events/${event.slug}`}>More info</Link>
-								</span>
+								</EventDetailsItem>
 							</EventsItem>
 						);
 					})}

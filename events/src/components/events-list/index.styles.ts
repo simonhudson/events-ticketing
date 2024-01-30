@@ -9,9 +9,12 @@ export const EventsItem = styled.li`
 	padding: ${rem(16)} 0;
 `;
 
-export const EventName = styled.span`
+export const EventDetailsItem = styled.span`
 	display: block;
-	font-size: ${rem(16)};
-	font-weight: bold;
 	margin-bottom: ${rem(8)};
+
+	&:first-of-type {
+		font-size: ${rem(16)};
+		font-weight: bold;
+	}
 `;

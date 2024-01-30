@@ -4,17 +4,7 @@ import { Label } from '../label';
 import { validateOnBlur, setDescribedByElement } from '../helpers';
 import type { TextAreaProps } from './textarea';
 
-export const TextArea = ({
-	description,
-	errorText,
-	fieldRef,
-	id,
-	labelText,
-	required,
-	rows,
-	cols,
-	onChange,
-}: TextAreaProps) => {
+export const TextArea = ({ description, errorText, fieldRef, id, labelText, required, onChange }: TextAreaProps) => {
 	const [isInvalid, setIsInvalid] = useState<boolean>(false);
 
 	const fieldId = `input-${id}`;
@@ -42,8 +32,6 @@ export const TextArea = ({
 				}}
 				onFocus={() => setIsInvalid(false)}
 				ref={fieldRef}
-				rows={rows}
-				cols={cols}
 			></StyledTextArea>
 		</>
 	);
