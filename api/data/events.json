@@ -4,7 +4,7 @@
         "description": "Playing all the hits",
         "id": "f445be5e-9c04-410b-a6de-f20fa7dbcda5",
         "location": "Motorpoint Arena,\nNottingham",
-        "map_url": "https://maps.app.goo.gl/EwdVtmt3Pb7N9TGo8",
+        "map_url": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2403.756374922622!2d-1.1421859863450543!3d52.95280657206163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4879c3d7b1f4e399%3A0xcda4771f84ce023c!2sMotorpoint%20Arena%20Nottingham!5e0!3m2!1sen!2suk!4v1706614627233!5m2!1sen!2suk",
         "name": "Bob Dylan",
         "slug": "bob-dylan-2024-04-19",
         "tickets": [
@@ -27,12 +27,55 @@
                 "info": "VIP",
                 "price": 250,
                 "booking_fee": 2.99,
-                "is_available": true
+                "is_available": false
             }
         ],
         "time": {
             "start": "18:00",
             "end": "23:00"
+        }
+    },
+    {
+        "date": "2024-05-04",
+        "description": "A day in the sunshine for all the family",
+        "id": "1f9e0d50-f3b7-410b-8e66-b39af509cc8f",
+        "location": "Markeaton Park,\nDerby",
+        "map_url": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2404.8635263858614!2d-1.5075033863456484!3d52.93288357205634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4879f6b379ac2651%3A0xb2d5964b288978ec!2sMarkeaton%20Park!5e0!3m2!1sen!2suk!4v1706614141907!5m2!1sen!2suk",
+        "name": "Family Fun Day",
+        "slug": "family-fun-day-2024-05-04",
+        "tickets": [
+            {
+                "type": "Adult",
+                "info": "",
+                "price": 7,
+                "booking_fee": 0,
+                "is_available": true
+            },
+            {
+                "type": "Child",
+                "info": "Under 5",
+                "price": 0,
+                "booking_fee": 0,
+                "is_available": true
+            },
+            {
+                "type": "Child",
+                "info": "Under 16",
+                "price": 5,
+                "booking_fee": 0,
+                "is_available": true
+            },
+            {
+                "type": "Family",
+                "info": "2 adults, 2 children under 16",
+                "price": 20,
+                "booking_fee": 0,
+                "is_available": true
+            }
+        ],
+        "time": {
+            "start": "11:00",
+            "end": "20:00"
         }
     }
 ]

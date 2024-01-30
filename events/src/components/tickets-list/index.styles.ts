@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 import { rem } from 'polished';
 
-export const TicketsList = styled.ul``;
+export const TicketsList = styled.ul`
+	width: 50%;
+`;
 
 export const TicketsItem = styled.li`
+	align-items: center;
 	border-bottom: 1px solid #ccc;
+	display: flex;
+	justify-content: space-between;
 	list-style: none;
 	padding: ${rem(20)} 0 0;
 
@@ -13,10 +18,11 @@ export const TicketsItem = styled.li`
 	}
 `;
 
-export const TicketType = styled.span`
-	font-weight: bold;
-`;
-
 export const TicketDetailsItem = styled.span`
 	display: block;
+	margin-bottom: ${rem(8)};
+
+	&:first-of-type {
+		font-weight: bold;
+	}
 `;

@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import type { Event as EventType } from '../../../../types/event';
+import { TicketsList } from '../../components/tickets-list';
+import { Icon } from '../../components/icon';
+import { VisuallyHidden } from '../../theme/layout';
 
 export const Event = () => {
 	const params = useParams();
@@ -23,38 +26,47 @@ export const Event = () => {
 					{event.description && <p>{event.description}</p>}
 					{event.date && (
 						<>
-							<h2>When</h2>
-							<p>{event.dateFormatted}</p>
+							<h2>
+								<Icon name="calendar-days" />
+								&nbsp;When
+							</h2>
 							<p>
-								<span>{event.time?.start && `Starts: ${event.time.start}`}</span>
-								<span>{event.time?.end && `Ends: ${event.time.end}`}</span>
+								{event.dateFormatted}
+								{event.time?.start && (
+									<span>
+										<br /> {event.time.start}
+									</span>
+								)}
+								<span>{event.time?.end && ` - ${event.time.end}`}</span>
 							</p>
 						</>
 					)}
-					<h2>Where</h2>
-					{event.map_url && (
-						<iframe
-							aria-label={`Map showing the location of the event`}
-							src={event.map_url}
-							width="600"
-							height="450"
-							allowFullScreen={true}
-							loading="lazy"
-							referrerPolicy="no-referrer-when-downgrade"
-						></iframe>
+					<h2>
+						<Icon name="location-dot" />
+						&nbsp;Where
+					</h2>
+					{event.location && (
+						<p>
+							{event.location}
+							{event.map_url && (
+								<>
+									<br />
+									<Icon name="map" />
+									&nbsp;
+									<a href={event.map_url}>
+										Map<VisuallyHidden>&nbsp;showing {event.location}</VisuallyHidden>
+									</a>
+								</>
+							)}
+						</p>
 					)}
 					{event.tickets?.length && (
 						<>
-							<h2>Tickets</h2>
-							<ul>
-								{event.tickets.map((ticket, index: number) => {
-									return (
-										<li key={index}>
-											{ticket.type} {ticket.info && `(${ticket.info})`} - &pound;{ticket.price}
-										</li>
-									);
-								})}
-							</ul>
+							<h2>
+								<Icon name="ticket" />
+								&nbsp;Tickets
+							</h2>
+							<TicketsList tickets={event.tickets} showCta={true} />
 						</>
 					)}
 				</>

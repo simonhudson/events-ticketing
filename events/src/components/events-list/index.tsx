@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { EventsList as StyledEventsList, EventsItem, EventDetailsItem } from './index.styles';
+import { Button } from '../button';
 import type { Event } from '../../../../types/event';
 
 const ASCENDING = 'asc';
@@ -35,12 +36,17 @@ export const EventsList = () => {
 		})();
 	}, [sortDirection]);
 
-	return (
+	return !events || !events.length ? (
+		<p>
+			Looks like we don't have any events to list. Perhaps you would like to <Link to="/">add one?</Link>
+		</p>
+	) : (
 		<>
 			{events && events.length > 1 && (
-				<button onClick={() => setSortDirection(sortDirection === ASCENDING ? DESCENDING : ASCENDING)}>
-					Sort by date {sortDirection === ASCENDING ? '↑' : '↓'}
-				</button>
+				<Button
+					onClick={() => setSortDirection(sortDirection === ASCENDING ? DESCENDING : ASCENDING)}
+					label={`Sort by date ${sortDirection === ASCENDING ? '↑' : '↓'}`}
+				/>
 			)}
 			<StyledEventsList>
 				{!!events &&
@@ -48,6 +54,7 @@ export const EventsList = () => {
 						return (
 							<EventsItem key={index}>
 								<EventDetailsItem>{event.name}</EventDetailsItem>
+								<EventDetailsItem>{event.location}</EventDetailsItem>
 								<EventDetailsItem>{event.date && event.dateFormatted}</EventDetailsItem>
 								<EventDetailsItem>
 									<Link to={`/events/${event.slug}`}>More info</Link>
