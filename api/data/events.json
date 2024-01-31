@@ -861,5 +861,149 @@
             "start": "10:00",
             "end": "12:00"
         }
+    },
+    {
+        "date": "2022-12-31",
+        "description": "Test event",
+        "id": "3097265e-7b2a-4333-8986-afc442162bdb",
+        "location": "Test location",
+        "map_url": "https://test.com",
+        "name": "Test",
+        "slug": "test-2022-12-31",
+        "tickets": [
+            {
+                "type": "Adult",
+                "info": "This is some info about the ticket",
+                "price": 10.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            },
+            {
+                "type": "Child",
+                "info": "Under 16 years old",
+                "price": 7.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            },
+            {
+                "type": "Vip",
+                "info": "",
+                "price": 700.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            }
+        ],
+        "time": {
+            "start": "10:00",
+            "end": "12:00"
+        }
+    },
+    {
+        "date": "2022-12-31",
+        "description": "Test event",
+        "id": "93af49d3-9168-4ee7-a81d-99118f658f2a",
+        "location": "Test location",
+        "map_url": "https://test.com",
+        "name": "Test",
+        "slug": "test-2022-12-31",
+        "tickets": [
+            {
+                "type": "Adult",
+                "info": "This is some info about the ticket",
+                "price": 10.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            },
+            {
+                "type": "Child",
+                "info": "Under 16 years old",
+                "price": 7.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            },
+            {
+                "type": "Vip",
+                "info": "",
+                "price": 700.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            }
+        ],
+        "time": {
+            "start": "10:00",
+            "end": "12:00"
+        }
+    },
+    {
+        "date": "2022-12-31",
+        "description": "Test event",
+        "id": "c0c36900-97ae-487a-86f9-378b098c65f8",
+        "location": "Test location",
+        "map_url": "https://test.com",
+        "name": "Test",
+        "slug": "test-2022-12-31",
+        "tickets": [
+            {
+                "type": "Adult",
+                "info": "This is some info about the ticket",
+                "price": 10.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            },
+            {
+                "type": "Child",
+                "info": "Under 16 years old",
+                "price": 7.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            },
+            {
+                "type": "Vip",
+                "info": "",
+                "price": 700.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            }
+        ],
+        "time": {
+            "start": "10:00",
+            "end": "12:00"
+        }
+    },
+    {
+        "date": "2022-12-31",
+        "description": "Test event",
+        "id": "8c1cd00d-8b3d-4a56-829d-910b7ed1baef",
+        "location": "Test location",
+        "map_url": "https://test.com",
+        "name": "Test",
+        "slug": "test-2022-12-31",
+        "tickets": [
+            {
+                "type": "Adult",
+                "info": "This is some info about the ticket",
+                "price": 10.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            },
+            {
+                "type": "Child",
+                "info": "Under 16 years old",
+                "price": 7.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            },
+            {
+                "type": "Vip",
+                "info": "",
+                "price": 700.99,
+                "booking_fee": 1.99,
+                "is_available": true
+            }
+        ],
+        "time": {
+            "start": "10:00",
+            "end": "12:00"
+        }
     }
 ]
